@@ -1,4 +1,4 @@
-package com.example.mmolist;
+package com.ulille.mmolist;
 
 import org.junit.Test;
 
