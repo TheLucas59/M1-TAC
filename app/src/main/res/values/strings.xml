@@ -3,4 +3,9 @@
     <string name="title">MMOList</string>
     <string name="subtitle">Copains des gamers</string>
     <string name="buttonStart">Demarrer</string>
+    <string name="buttonAllGame">Tout les jeux</string>
+    <string name="buttonFavorite">Mes favoris</string>
+    <string name="buttonRandom">Aléatoire</string>
+    <string name="buttonCredit">Crédits</string>
+
 </resources>
