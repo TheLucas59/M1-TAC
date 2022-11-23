@@ -1,4 +1,4 @@
-package com.example.mmolist;
+package com.ulille.mmolist;
 
 import android.content.Context;
 
