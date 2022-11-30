@@ -28,4 +28,11 @@
     <string name="imageNameDesc"> Image that represent the game</string>
     <string name="emptyDesc">No description given</string>
     <string name="emptyTitle">No title given</string>
+
+    <!-- GameDetail -->
+    <string name="tvCategorie">Catégorie</string>
+    <string name="tvCategorieEdit">No categorie given</string>
+    <string name="tvDescription">Déscription:</string>
+    <string name="tvDescriptionEdit">No desc available</string>
+
 </resources>
