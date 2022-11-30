@@ -1,3 +1,38 @@
 <resources>
+    <!-- homepage -->
     <string name="app_name">MMO List</string>
+    <string name="title">MMOList</string>
+    <string name="subtitle">Copains des gamers</string>
+    <string name="buttonStart">Demarrer</string>
+    <!-- mainmenu -->
+    <string name="buttonAllGame">Tout les jeux</string>
+    <string name="buttonFavorite">Mes favoris</string>
+    <string name="buttonRandom">Aléatoire</string>
+    <string name="buttonCredit">Crédits</string>
+    <string name="title_activity_menu">Menu</string>
+    <!-- AllGamePage -->
+    <string name="allGame"> Tout les jeux</string>
+    <string name="list"> Liste</string>
+    <string name="grid"> Grid</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- Utils -->
+    <string name="addFavoriteDesc">Add to favorite</string>
+    <string name="imageNameDesc"> Image that represent the game</string>
+    <string name="emptyDesc">No description given</string>
+    <string name="emptyTitle">No title given</string>
+
+    <!-- GameDetail -->
+    <string name="tvCategorie">Catégorie</string>
+    <string name="tvCategorieEdit">No categorie given</string>
+    <string name="tvDescription">Déscription:</string>
+    <string name="tvDescriptionEdit">No desc available</string>
+
 </resources>
