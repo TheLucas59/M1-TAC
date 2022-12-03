@@ -19,10 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.v_home_page);
         buttonStart = findViewById(R.id.buttonStart);
-        buttonStart.setOnClickListener((View v) -> {
-            Intent startActivityIntent = new Intent(MainActivity.this, MenuActivity.class);
-            secondActivityLauncher.launch(startActivityIntent);
-        });
+        buttonStart.setOnClickListener(mOnClickStart);
     }
 
     private ActivityResultLauncher<Intent> createSecondActivityLauncher() {
@@ -37,5 +34,9 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    private final View.OnClickListener mOnClickStart = view -> {
+        Intent startActivityIntent = new Intent(MainActivity.this, MenuActivity.class);
+        secondActivityLauncher.launch(startActivityIntent);
+    };
 
     }
