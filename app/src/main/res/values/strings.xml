@@ -35,4 +35,7 @@
     <string name="tvDescription">Déscription:</string>
     <string name="tvDescriptionEdit">No desc available</string>
 
+    <!-- Favorite -->
+    <string name="favoriteTitle">Favoris</string>
+
 </resources>
