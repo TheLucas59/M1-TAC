@@ -67,7 +67,7 @@ public class AllGameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.adapterAllGame = new GameAdapter();
+        this.adapterAllGame = new GameAdapter(getApplicationContext());
         setContentView(R.layout.v_all_game);
         recyclerViewAllGames = findViewById(R.id.recyclerViewAllGames);
 
