@@ -1,5 +1,6 @@
 package com.ulille.mmolist;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.ulille.mmolist.api.model.Game;
 
 import java.util.ArrayList;
@@ -19,10 +22,12 @@ import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
     List<Game> games;
+    Context context;
 
-    public GameAdapter(){
+    public GameAdapter(Context context){
         super();
         this.games = new ArrayList<>();
+        this.context = context;
     }
 
     @NonNull
@@ -45,6 +50,11 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         holder.buttonAddFavorite.setOnClickListener(view -> Log.d("EGG", game.getTitle()));
         holder.descriptionCard.setText(game.getShortDescription());
         holder.titleCard.setText(game.getTitle());
+        Glide.with(context)
+                .load(game.getThumbnail())
+                .sizeMultiplier((float) 0.15)
+                .fitCenter()
+                .into(holder.imageGame);
     }
 
     public void setGames(List<Game> games) {
