@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +33,7 @@ public class AllGameActivity extends AppCompatActivity {
     ImageButton buttonGrid;
     ImageButton buttonList;
     GameViewModel viewModelGames;
+    ImageView imageFavorite;
 
     View.OnClickListener onClickGrid = new View.OnClickListener() {
         @Override
@@ -73,14 +77,15 @@ public class AllGameActivity extends AppCompatActivity {
 
         buttonGrid = findViewById(R.id.buttonGrid);
         buttonGrid.setOnClickListener(onClickGrid);
+
         buttonList = findViewById(R.id.buttonList);
         buttonList.setOnClickListener(onClickList);
         buttonList.setClickable(false);
         buttonList.setEnabled(false);
         buttonList.getBackground().setAlpha(TRANSPARENCY_VAL);
 
-        recyclerViewAllGames.setLayoutManager(new LinearLayoutManager(this));
-
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerViewAllGames.setLayoutManager(layoutManager);
         viewModelGames = new ViewModelProvider(this).get(GameViewModel.class);
         Observable<List<Game>> observableListGames = viewModelGames.getAllGames();
         observableListGames.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
