@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.ulille.mmolist.activities.MenuActivity;
+
 public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> secondActivityLauncher = createSecondActivityLauncher();
     Button buttonStart;
