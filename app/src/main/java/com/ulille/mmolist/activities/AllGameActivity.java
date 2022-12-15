@@ -1,4 +1,4 @@
-package com.ulille.mmolist;
+package com.ulille.mmolist.activities;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,13 +8,15 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ulille.mmolist.R;
+import com.ulille.mmolist.adapters.AbstractGameAdapter;
+import com.ulille.mmolist.adapters.GameAdapterGrid;
+import com.ulille.mmolist.adapters.GameAdapterList;
 import com.ulille.mmolist.api.model.Game;
 import com.ulille.mmolist.viewmodel.GameViewModel;
 
@@ -29,57 +31,55 @@ public class AllGameActivity extends AppCompatActivity {
     private final int TRANSPARENCY_VAL = 64;
     private final int TRANSPARENCY_BASE = 255;
     RecyclerView recyclerViewAllGames;
-    GameAdapter adapterAllGame;
+    AbstractGameAdapter adapterAllGame;
     ImageButton buttonGrid;
     ImageButton buttonList;
     GameViewModel viewModelGames;
-    ImageView imageFavorite;
+    Observable<List<Game>> observableListGames;
 
-    View.OnClickListener onClickGrid = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            recyclerViewAllGames.getAdapter().getItemViewType(R.layout.v_gamecard_grid);
-            recyclerViewAllGames.setLayoutManager(
-                    new GridLayoutManager(
-                            AllGameActivity.this, GridLayoutManager.DEFAULT_SPAN_COUNT));
-            buttonGrid.setClickable(false);
-            buttonGrid.setEnabled(false);
-            buttonList.setClickable(true);
-            buttonList.setEnabled(true);
-            buttonGrid.getBackground().setAlpha(TRANSPARENCY_VAL);
-            buttonList.getBackground().setAlpha(TRANSPARENCY_BASE);
+    public void setOnClickGrid(View v){
+        this.adapterAllGame = new GameAdapterGrid(getApplicationContext());
+        this.recyclerViewAllGames.setLayoutManager(
+                new GridLayoutManager(
+                        AllGameActivity.this, GridLayoutManager.DEFAULT_SPAN_COUNT));
+        recyclerViewAllGames.setAdapter(this.adapterAllGame);
 
-        }
-    };
+        buttonGrid.setClickable(false);
+        buttonGrid.setEnabled(false);
+        buttonList.setClickable(true);
+        buttonList.setEnabled(true);
+        buttonGrid.getBackground().setAlpha(TRANSPARENCY_VAL);
+        buttonList.getBackground().setAlpha(TRANSPARENCY_BASE);
 
-    View.OnClickListener onClickList = new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                recyclerViewAllGames.getAdapter().getItemViewType(R.layout.v_gamecard_list);
-                recyclerViewAllGames.setLayoutManager(
-                        new LinearLayoutManager(
-                                AllGameActivity.this, LinearLayoutManager.VERTICAL, false));
-                buttonGrid.setClickable(true);
-                buttonGrid.setEnabled(true);
-                buttonList.setClickable(false);
-                buttonList.setEnabled(false);
-                buttonList.getBackground().setAlpha(TRANSPARENCY_VAL);
-                buttonGrid.getBackground().setAlpha(TRANSPARENCY_BASE);
-            }
-        };
+    }
+
+    public void setOnClickList(View v){
+        this.adapterAllGame = new GameAdapterList(getApplicationContext());
+        recyclerViewAllGames.setLayoutManager(
+                new LinearLayoutManager(
+                        AllGameActivity.this));
+        recyclerViewAllGames.setAdapter(this.adapterAllGame);
+        buttonGrid.setClickable(false);
+        buttonGrid.setEnabled(false);
+        buttonList.setClickable(true);
+        buttonList.setEnabled(true);
+        buttonGrid.getBackground().setAlpha(TRANSPARENCY_VAL);
+        buttonList.getBackground().setAlpha(TRANSPARENCY_BASE);
+
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.adapterAllGame = new GameAdapter(getApplicationContext());
+        this.adapterAllGame = new GameAdapterList(getApplicationContext());
         setContentView(R.layout.v_all_game);
         recyclerViewAllGames = findViewById(R.id.recyclerViewAllGames);
 
         buttonGrid = findViewById(R.id.buttonGrid);
-        buttonGrid.setOnClickListener(onClickGrid);
+        buttonGrid.setOnClickListener(this::setOnClickGrid);
 
         buttonList = findViewById(R.id.buttonList);
-        buttonList.setOnClickListener(onClickList);
+        buttonList.setOnClickListener(this::setOnClickList);
         buttonList.setClickable(false);
         buttonList.setEnabled(false);
         buttonList.getBackground().setAlpha(TRANSPARENCY_VAL);
@@ -87,7 +87,7 @@ public class AllGameActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerViewAllGames.setLayoutManager(layoutManager);
         viewModelGames = new ViewModelProvider(this).get(GameViewModel.class);
-        Observable<List<Game>> observableListGames = viewModelGames.getAllGames();
+        this.observableListGames = viewModelGames.getAllGames();
         observableListGames.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::subscribeAllGames) ;
         recyclerViewAllGames.setAdapter(adapterAllGame);
@@ -96,6 +96,5 @@ public class AllGameActivity extends AppCompatActivity {
     private void subscribeAllGames(List<Game> games){
         this.adapterAllGame.setGames(games);
     }
-
 
 }
