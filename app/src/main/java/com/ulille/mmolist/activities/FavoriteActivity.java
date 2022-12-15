@@ -1,10 +1,12 @@
-package com.ulille.mmolist;
+package com.ulille.mmolist.activities;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ulille.mmolist.R;
 
 public class FavoriteActivity extends AppCompatActivity {
     private final String TITLE = getString(R.string.favoriteTitle);
