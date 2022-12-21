@@ -49,6 +49,7 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
         holder.titleCard.setText(game.getTitle());
         Glide.with(context)
                 .load(game.getThumbnail())
+                .fitCenter()
                 .into(holder.imageGame);
     }
 
