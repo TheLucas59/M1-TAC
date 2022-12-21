@@ -1,13 +1,19 @@
 package com.ulille.mmolist.api.model;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.util.List;
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("jsonschema2pojo")
+@Entity
 public class GameDetails {
 
+    @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -47,9 +53,11 @@ public class GameDetails {
     @SerializedName("profile_url")
     @Expose
     private String profileUrl;
+    @Ignore
     @SerializedName("minimum_system_requirements")
     @Expose
     private MinimumSystemRequirements minimumSystemRequirements;
+    @Ignore
     @SerializedName("screenshots")
     @Expose
     private List<Screenshot> screenshots = null;
