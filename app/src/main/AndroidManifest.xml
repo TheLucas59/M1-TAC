@@ -14,7 +14,7 @@
         android:theme="@style/Theme.MMOList"
         tools:targetApi="31" >
         <activity
-            android:name=".MenuActivity"
+            android:name=".activities.MenuActivity"
             android:exported="false"
             android:label="@string/title_activity_menu"
             android:theme="@style/Theme.MMOList.NoActionBar" />
@@ -27,10 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AllGameActivity"/>
-        <activity android:name=".FavoriteActivity"/>
-        <activity android:name=".RandomActivity"/>
-        <activity android:name=".CreditActivity"/>
+        <activity android:name=".activities.AllGameActivity"/>
+        <activity android:name=".activities.FavoriteActivity"/>
+        <activity android:name=".activities.RandomActivity"/>
+        <activity android:name=".activities.CreditActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
