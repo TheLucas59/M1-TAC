@@ -1,4 +1,4 @@
-package com.ulille.mmolist;
+package com.ulille.mmolist.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.Button;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ulille.mmolist.R;
 
 public class MenuActivity extends AppCompatActivity {
     Button buttonAllGame;

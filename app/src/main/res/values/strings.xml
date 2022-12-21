@@ -32,7 +32,10 @@
     <!-- GameDetail -->
     <string name="tvCategorie">Catégorie</string>
     <string name="tvCategorieEdit">No categorie given</string>
-    <string name="tvDescription">Déscription:</string>
+    <string name="tvDescription">Description:</string>
     <string name="tvDescriptionEdit">No desc available</string>
+
+    <!-- Favorite -->
+    <string name="favoriteTitle">Favoris</string>
 
 </resources>
