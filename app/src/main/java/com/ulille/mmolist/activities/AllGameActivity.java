@@ -38,10 +38,15 @@ public class AllGameActivity extends AppCompatActivity {
     Observable<List<Game>> observableListGames;
 
     public void setOnClickGrid(View v){
+
         this.adapterAllGame = new GameAdapterGrid(getApplicationContext());
         this.recyclerViewAllGames.setLayoutManager(
                 new GridLayoutManager(
-                        AllGameActivity.this, GridLayoutManager.DEFAULT_SPAN_COUNT));
+                        AllGameActivity.this, 2));
+
+        observableListGames.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::subscribeAllGames) ;
+
         recyclerViewAllGames.setAdapter(this.adapterAllGame);
 
         buttonGrid.setClickable(false);
@@ -58,13 +63,17 @@ public class AllGameActivity extends AppCompatActivity {
         recyclerViewAllGames.setLayoutManager(
                 new LinearLayoutManager(
                         AllGameActivity.this));
+
+        observableListGames.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::subscribeAllGames) ;
+
         recyclerViewAllGames.setAdapter(this.adapterAllGame);
-        buttonGrid.setClickable(false);
-        buttonGrid.setEnabled(false);
-        buttonList.setClickable(true);
-        buttonList.setEnabled(true);
-        buttonGrid.getBackground().setAlpha(TRANSPARENCY_VAL);
-        buttonList.getBackground().setAlpha(TRANSPARENCY_BASE);
+        buttonList.setClickable(false);
+        buttonList.setEnabled(false);
+        buttonGrid.setClickable(true);
+        buttonGrid.setEnabled(true);
+        buttonGrid.getBackground().setAlpha(TRANSPARENCY_BASE);
+        buttonList.getBackground().setAlpha(TRANSPARENCY_VAL);
 
     }
 
@@ -90,6 +99,8 @@ public class AllGameActivity extends AppCompatActivity {
         this.observableListGames = viewModelGames.getAllGames();
         observableListGames.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::subscribeAllGames) ;
+
+
         recyclerViewAllGames.setAdapter(adapterAllGame);
     }
 
