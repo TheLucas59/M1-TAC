@@ -64,4 +64,8 @@ public class MinimumSystemRequirements {
         this.storage = storage;
     }
 
+    @Override
+    public String toString() {
+        return os + '\n' + processor + '\n' + memory + '\n'  + graphics + '\n' + storage;
+    }
 }

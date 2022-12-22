@@ -28,7 +28,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pngwing_com"
-        tools:srcCompat="@drawable/pngwing_com" />
+        tools:srcCompat="@drawable/pngwing_com"
+        android:contentDescription="@string/starFavorite" />
 
     <ImageView
         android:id="@+id/gameThumbnail"
@@ -66,7 +67,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="25"
+                    android:layout_weight="30"
                     android:text="@string/tvCategorie"
                     android:textStyle="bold" />
 
@@ -75,9 +76,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="75"
-                    android:gravity="start|left"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="70"
+                    android:gravity="start"
                     android:text="@string/tvCategorieEdit" />
 
             </LinearLayout>
@@ -93,7 +94,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="25"
+                    android:layout_weight="30"
                     android:text="@string/tvPublisher"
                     android:textStyle="bold" />
 
@@ -102,8 +103,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="75"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="70"
                     android:text="@string/tvPublisherEdit" />
 
             </LinearLayout>
@@ -115,22 +116,73 @@
                 android:weightSum="100">
 
                 <TextView
-                    android:id="@+id/tvPlateforme"
+                    android:id="@+id/tvPlatform"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="25"
+                    android:layout_weight="30"
                     android:text="@string/tvPlateforme"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvPlateformeEdit"
+                    android:id="@+id/tvPlatformEdit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="75"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="70"
                     android:text="@string/tvPlateformeEdit" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <TextView
+                    android:id="@+id/tvRequirement"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="30"
+                    android:text="@string/tvRequirement"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvRequirementEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="70"
+                    android:text="@string/tvRequirementEdit" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <TextView
+                    android:id="@+id/tvDeveloper"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="30"
+                    android:text="@string/tvDeveloper"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDeveloperEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="70"
+                    android:text="@string/tvDeveloperEdit" />
             </LinearLayout>
 
             <LinearLayout
@@ -143,7 +195,7 @@
                     android:id="@+id/tvDescription"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="25"
+                    android:layout_weight="30"
                     android:text="@string/tvDescription"
                     android:textStyle="bold" />
 
@@ -151,9 +203,9 @@
                     android:id="@+id/tvDescriptionEdit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="75"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="70"
                     android:justificationMode="inter_word"
                     android:text="@string/tvDescriptionEdit" />
             </LinearLayout>
@@ -171,7 +223,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/gameThumbnail"
         app:layout_constraintTop_toTopOf="@+id/gameThumbnail"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/gallery" />
 
     <TextView
         android:id="@+id/countScreenshot"

@@ -168,8 +168,8 @@ public class GameDetails {
         this.profileUrl = profileUrl;
     }
 
-    public MinimumSystemRequirements getMinimumSystemRequirements() {
-        return minimumSystemRequirements;
+    public String getMinimumSystemRequirements() {
+        return minimumSystemRequirements.toString();
     }
 
     public void setMinimumSystemRequirements(MinimumSystemRequirements minimumSystemRequirements) {
