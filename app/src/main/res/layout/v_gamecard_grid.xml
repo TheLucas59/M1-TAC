@@ -16,7 +16,6 @@
         app:layout_constraintVertical_bias="0.0"
         app:strokeColor="@color/light_coral"
         app:strokeWidth="1dp">
-        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

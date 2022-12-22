@@ -12,8 +12,8 @@ import io.reactivex.rxjava3.core.Single;
 
 public class DatabaseRepository {
 
-    private GameDatabase db;
-    private GameDetailsDAO gameDetailsDAO;
+    private final GameDatabase db;
+    private final GameDetailsDAO gameDetailsDAO;
 
     public DatabaseRepository(Application application) {
         db = GameDatabase.getDatabase(application);

@@ -1,7 +1,6 @@
 package com.ulille.mmolist.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,7 +36,7 @@ public class ViewPagerActivity extends AppCompatActivity {
         TabLayoutMediator tlm = new TabLayoutMediator(tablayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText("Screenshot" + position);
+                tab.setText("Screenshot " + ++position);
             }
         });
         tlm.attach();

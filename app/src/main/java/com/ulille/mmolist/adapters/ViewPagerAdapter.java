@@ -18,7 +18,6 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerHolder> {
     String[] uris;
     public ViewPagerAdapter(Context context, String[] uris){
         this.context = context;
-        Log.d("pouet", "ViewPagerAdapter: " + uris);
         this.uris = uris;
     }
     @NonNull
