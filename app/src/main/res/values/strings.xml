@@ -30,12 +30,23 @@
     <string name="emptyTitle">No title given</string>
 
     <!-- GameDetail -->
-    <string name="tvCategorie">Catégorie</string>
+    <string name="tvCategorie">Catégorie:</string>
     <string name="tvCategorieEdit">No categorie given</string>
     <string name="tvDescription">Description:</string>
     <string name="tvDescriptionEdit">No desc available</string>
+    <string name="tvPlateforme">Plateforme:</string>
+    <string name="tvPlateformeEdit">No platform available</string>
+    <string name="tvPublisher">Editeur:</string>
+    <string name="tvPublisherEdit">No publisher available</string>
+    <string name="tvRequirement">Specs:</string>
+    <string name="tvRequirementEdit">No specs available</string>
+    <string name="tvDeveloper">Developpeurs:</string>
+    <string name="tvDeveloperEdit">No developeur info available</string>
+    <string name="countScreenshot">No screenshot available</string>
 
     <!-- Favorite -->
     <string name="favoriteTitle">Favoris</string>
+    <string name="gallery">Gallery of various screenshots of the game</string>
+    <string name="starFavorite">star filled if favorite and empty if not</string>
 
 </resources>

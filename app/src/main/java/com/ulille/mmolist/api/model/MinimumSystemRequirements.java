@@ -1,8 +1,9 @@
 package com.ulille.mmolist.api.model;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import javax.annotation.Generated;
 
 @Generated("jsonschema2pojo")
 public class MinimumSystemRequirements {
@@ -63,4 +64,8 @@ public class MinimumSystemRequirements {
         this.storage = storage;
     }
 
+    @Override
+    public String toString() {
+        return os + '\n' + processor + '\n' + memory + '\n'  + graphics + '\n' + storage;
+    }
 }

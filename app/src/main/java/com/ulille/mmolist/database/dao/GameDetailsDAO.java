@@ -15,14 +15,14 @@ import io.reactivex.rxjava3.core.Single;
 public interface GameDetailsDAO {
 
     @Query("SELECT * FROM GameDetails")
-    public Single<List<GameDetails>> getAllFavoriteGames();
+    Single<List<GameDetails>> getAllFavoriteGames();
 
     @Query("SELECT * FROM GameDetails WHERE id = :id")
-    public Single<GameDetails> getFavoriteGame(int id);
+    Single<GameDetails> getFavoriteGame(int id);
 
     @Insert
-    public void insert(GameDetails gameDetails);
+    void insert(GameDetails gameDetails);
 
     @Delete
-    public void delete(GameDetails gameDetails);
+    void delete(GameDetails gameDetails);
 }

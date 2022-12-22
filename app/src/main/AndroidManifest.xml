@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ulille.mmolist" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -31,9 +34,9 @@
         <activity android:name=".activities.FavoriteActivity"/>
         <activity android:name=".activities.RandomActivity"/>
         <activity android:name=".activities.CreditActivity"/>
-    </application>
+        <activity android:name=".activities.GameDetailsActivity"/>
+        <activity android:name=".activities.ViewPagerActivity"/>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    </application>
 
 </manifest>
