@@ -30,10 +30,15 @@
     <string name="emptyTitle">No title given</string>
 
     <!-- GameDetail -->
-    <string name="tvCategorie">Catégorie</string>
+    <string name="tvCategorie">Catégorie:</string>
     <string name="tvCategorieEdit">No categorie given</string>
     <string name="tvDescription">Description:</string>
     <string name="tvDescriptionEdit">No desc available</string>
+    <string name="tvPlateforme">Plateforme:</string>
+    <string name="tvPlateformeEdit">No platform available</string>
+    <string name="tvPublisher">Editeur:</string>
+    <string name="tvPublisherEdit">No publisher available</string>
+    <string name="countScreenshot">No screenshot available</string>
 
     <!-- Favorite -->
     <string name="favoriteTitle">Favoris</string>

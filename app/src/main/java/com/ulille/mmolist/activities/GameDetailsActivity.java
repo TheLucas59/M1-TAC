@@ -3,6 +3,7 @@ package com.ulille.mmolist.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,11 +36,11 @@ public class GameDetailsActivity extends AppCompatActivity {
     ImageView gameThumbnail;
     TextView tvCategorieEdit;
     TextView tvDescriptionEdit;
+    TextView tvPlateformeEdit;
+    TextView tvPublisherEdit;
     ImageButton gameScreenshot1;
-    ImageButton gameScreenshot2;
-    ImageButton gameScreenshot3;
-    ImageButton gameScreenshot4;
-    List<ImageButton> gameScreenshots = new ArrayList<>();
+    TextView tvCountScreenshot;
+    Boolean favorite = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,19 +58,29 @@ public class GameDetailsActivity extends AppCompatActivity {
 
         viewModelGames = new ViewModelProvider(this).get(GameViewModel.class);
 
+        buttonFavoriteDetail = findViewById(R.id.buttonFavoriteDetail);
         gameTitle = findViewById(R.id.gameTitle);
         gameThumbnail = findViewById(R.id.gameThumbnail);
 
         tvCategorieEdit = findViewById(R.id.tvCategorieEdit);
         tvDescriptionEdit = findViewById(R.id.tvDescriptionEdit);
 
+        tvPublisherEdit = findViewById(R.id.tvPublisherEdit);
+        tvPlateformeEdit = findViewById(R.id.tvPlateformeEdit);
+
+        tvCountScreenshot = findViewById(R.id.countScreenshot);
+
         gameScreenshot1 = findViewById(R.id.gameScreenshot1);
-        gameScreenshot2 = findViewById(R.id.gameScreenshot2);
-        gameScreenshot3 = findViewById(R.id.gameScreenshot3);
-        gameScreenshot4 = findViewById(R.id.gameScreenshot4);
-        gameScreenshots.addAll(Arrays.asList(gameScreenshot1, gameScreenshot2, gameScreenshot3, gameScreenshot4));
         viewModelGames.getGameDetails(idGame).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribeWith(getGameDetailObserver());
+        buttonFavoriteDetail.setOnClickListener(view -> {
+            if (favorite) {
+                buttonFavoriteDetail.setImageResource(R.drawable.pngwing_com);
+            } else {
+                buttonFavoriteDetail.setImageResource(R.drawable.pngwing_com2);
+            }
+            favorite = !favorite;
+        });
     }
 
     private DisposableSingleObserver<GameDetails> getGameDetailObserver() {
@@ -93,23 +104,25 @@ public class GameDetailsActivity extends AppCompatActivity {
                 for (int i = 0; i < screenshots.size(); i++) {
                     allURIArr[i] = screenshots.get(i).getImage();
                 }
-                for (int i = 0; i < screenshots.size(); i++) {
-                    if (i < 3) {
-                        Glide.with(getApplicationContext())
-                                .load(screenshots.get(i).getImage())
-                                .fitCenter()
-                                .into(gameScreenshots.get(i));
-                    }
-                    gameScreenshots.get(i).setOnClickListener(view -> {
+                Glide.with(getApplicationContext())
+                        .load(screenshots.get(0).getImage())
+                        .fitCenter()
+                        .into(gameScreenshot1);
+
+
+                    gameScreenshot1.setOnClickListener(view -> {
                         Intent intent = new Intent(getApplicationContext(), ViewPagerActivity.class);
                         intent.putExtra("urisImage", allURIArr);
                         startActivity(intent);
                     });
-                }
 
                 tvCategorieEdit.setText(game.getGenre());
-                Log.d("pouet", game.getDescription());
                 tvDescriptionEdit.setText(HtmlCompat.fromHtml(game.getDescription(),HtmlCompat.FROM_HTML_MODE_LEGACY));
+                tvPlateformeEdit.setText(game.getPlatform());
+                tvPublisherEdit.setText(game.getPublisher());
+                if(screenshots.size() > 0) {
+                    tvCountScreenshot.setText("+" + screenshots.size());
+                }
             }
         };
     }
