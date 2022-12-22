@@ -58,45 +58,102 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="100">
 
                 <TextView
                     android:id="@+id/tvCategorie"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="0"
-                    android:text="@string/tvCategorie" />
+                    android:layout_weight="25"
+                    android:text="@string/tvCategorie"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvCategorieEdit"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
+                    android:layout_weight="75"
+                    android:gravity="start|left"
                     android:text="@string/tvCategorieEdit" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <TextView
+                    android:id="@+id/tvPublisher"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="25"
+                    android:text="@string/tvPublisher"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvPublisherEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="75"
+                    android:text="@string/tvPublisherEdit" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <TextView
+                    android:id="@+id/tvPlateforme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="25"
+                    android:text="@string/tvPlateforme"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvPlateformeEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="75"
+                    android:text="@string/tvPlateformeEdit" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="100">
 
                 <TextView
                     android:id="@+id/tvDescription"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:text="@string/tvDescription" />
+                    android:layout_weight="25"
+                    android:text="@string/tvDescription"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvDescriptionEdit"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="75"
                     android:justificationMode="inter_word"
                     android:text="@string/tvDescriptionEdit" />
             </LinearLayout>
@@ -105,44 +162,26 @@
     </ScrollView>
 
     <ImageButton
-        android:id="@+id/gameScreenshot2"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="12dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/gameScreenshot4"
-        app:layout_constraintStart_toEndOf="@+id/gameScreenshot1"
-        app:layout_constraintTop_toTopOf="@+id/gameThumbnail"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageButton
         android:id="@+id/gameScreenshot1"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="161dp"
+        android:layout_height="158dp"
+        android:alpha="0.5"
+        android:background="#00000000"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/gameScreenshot3"
-        app:layout_constraintStart_toStartOf="@+id/gameScreenshot3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gameThumbnail"
         app:layout_constraintTop_toTopOf="@+id/gameThumbnail"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <ImageButton
-        android:id="@+id/gameScreenshot3"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="12dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/gameThumbnail"
-        app:layout_constraintStart_toEndOf="@+id/gameThumbnail"
-        app:layout_constraintTop_toTopOf="@+id/gameScreenshot4"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageButton
-        android:id="@+id/gameScreenshot4"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/gameThumbnail"
-        app:layout_constraintStart_toStartOf="@+id/gameScreenshot2"
-        tools:srcCompat="@tools:sample/avatars" />
+    <TextView
+        android:id="@+id/countScreenshot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:text="@string/countScreenshot"
+        app:layout_constraintBottom_toBottomOf="@+id/gameScreenshot1"
+        app:layout_constraintEnd_toEndOf="@+id/gameScreenshot1"
+        app:layout_constraintStart_toStartOf="@+id/gameScreenshot1"
+        app:layout_constraintTop_toTopOf="@+id/gameScreenshot1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
