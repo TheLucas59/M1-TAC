@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 
 public class APIRepository {
-    private static MMOInterface apiInterface = MMOClient.getRetrofit().create(MMOInterface.class);
+    private static final MMOInterface apiInterface = MMOClient.getRetrofit().create(MMOInterface.class);
 
     public Observable<List<Game>> getAll() {
         return apiInterface.getAll();

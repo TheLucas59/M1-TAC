@@ -2,7 +2,6 @@ package com.ulille.mmolist.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 

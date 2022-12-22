@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.ulille.mmolist.api.model.Game;
 import com.ulille.mmolist.api.model.GameDetails;
-import com.ulille.mmolist.database.GameDatabase;
 import com.ulille.mmolist.repositories.APIRepository;
 import com.ulille.mmolist.repositories.DatabaseRepository;
 
@@ -18,8 +17,8 @@ import io.reactivex.rxjava3.core.Single;
 
 public class GameViewModel extends AndroidViewModel {
 
-    private APIRepository apiRepository;
-    private DatabaseRepository databaseRepository;
+    private final APIRepository apiRepository;
+    private final DatabaseRepository databaseRepository;
 
     public GameViewModel(@NonNull Application application) {
         super(application);
