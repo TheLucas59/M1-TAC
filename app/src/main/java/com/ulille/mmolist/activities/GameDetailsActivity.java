@@ -36,8 +36,10 @@ public class GameDetailsActivity extends AppCompatActivity {
     ImageView gameThumbnail;
     TextView tvCategorieEdit;
     TextView tvDescriptionEdit;
-    TextView tvPlateformeEdit;
+    TextView tvPlatformEdit;
     TextView tvPublisherEdit;
+    TextView tvDeveloperEdit;
+    TextView tvRequirementEdit;
     ImageButton gameScreenshot1;
     TextView tvCountScreenshot;
     Boolean favorite = false;
@@ -66,7 +68,9 @@ public class GameDetailsActivity extends AppCompatActivity {
         tvDescriptionEdit = findViewById(R.id.tvDescriptionEdit);
 
         tvPublisherEdit = findViewById(R.id.tvPublisherEdit);
-        tvPlateformeEdit = findViewById(R.id.tvPlateformeEdit);
+        tvPlatformEdit = findViewById(R.id.tvPlatformEdit);
+        tvRequirementEdit = findViewById(R.id.tvRequirementEdit);
+        tvDeveloperEdit = findViewById(R.id.tvDeveloperEdit);
 
         tvCountScreenshot = findViewById(R.id.countScreenshot);
 
@@ -118,8 +122,10 @@ public class GameDetailsActivity extends AppCompatActivity {
 
                 tvCategorieEdit.setText(game.getGenre());
                 tvDescriptionEdit.setText(HtmlCompat.fromHtml(game.getDescription(),HtmlCompat.FROM_HTML_MODE_LEGACY));
-                tvPlateformeEdit.setText(game.getPlatform());
+                tvPlatformEdit.setText(game.getPlatform());
                 tvPublisherEdit.setText(game.getPublisher());
+                tvRequirementEdit.setText(game.getMinimumSystemRequirements());
+                tvDeveloperEdit.setText(game.getDeveloper());
                 if(screenshots.size() > 0) {
                     tvCountScreenshot.setText("+" + screenshots.size());
                 }
