@@ -1,6 +1,8 @@
 package com.ulille.mmolist.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
@@ -9,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ulille.mmolist.R;
+import com.ulille.mmolist.activities.GameDetailsActivity;
 import com.ulille.mmolist.api.model.Game;
 import com.ulille.mmolist.viewholders.AbstractGameViewHolder;
 
@@ -19,6 +22,7 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
     List<Game> games;
     Context context;
     List<Game> favorite;
+
 
     public AbstractGameAdapter(Context context){
         super();
@@ -32,8 +36,16 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
     @Override
     abstract public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
 
+
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
+        holder.itemView.setOnClickListener(view -> {
+            Intent startActivityIntent = new Intent(context, GameDetailsActivity.class);
+            startActivityIntent.putExtra("idGame", games.get(position).getId());
+            startActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(startActivityIntent);
+            games.get(position);
+        });
         Game game = games.get(position);
         holder.buttonAddFavorite.setOnClickListener(view -> {
             ImageButton buttonFavorite = holder.buttonAddFavorite;
@@ -66,4 +78,6 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
     public int getItemCount() {
         return this.games.size();
     }
+
+
 }

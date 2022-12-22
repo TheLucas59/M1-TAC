@@ -31,6 +31,9 @@
         <activity android:name=".activities.FavoriteActivity"/>
         <activity android:name=".activities.RandomActivity"/>
         <activity android:name=".activities.CreditActivity"/>
+        <activity android:name=".activities.GameDetailsActivity"/>
+        <activity android:name=".activities.ViewPagerActivity"/>
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
