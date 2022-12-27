@@ -2,6 +2,7 @@ package com.ulille.mmolist.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
@@ -58,10 +59,16 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
         });
 
         holder.titleCard.setText(game.getTitle());
-        Glide.with(context)
-                .load(game.getThumbnail())
-                .fitCenter()
-                .into(holder.imageGame);
+        if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Glide.with(context)
+                    .load(game.getThumbnail())
+                    .fitCenter()
+                    .into(holder.imageGame);
+        }else{
+            Glide.with(context)
+                    .load(game.getThumbnail())
+                    .into(holder.imageGame);
+        }
     }
 
     public void setGames(List<Game> games) {

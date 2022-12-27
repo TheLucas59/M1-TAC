@@ -79,7 +79,7 @@ public class AllGameActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.adapterAllGame = new GameAdapterList(getApplicationContext());
-        setContentView(R.layout.v_all_game);
+        setContentView(R.layout.all_game);
         recyclerViewAllGames = findViewById(R.id.recyclerViewAllGames);
 
         buttonGrid = findViewById(R.id.buttonGrid);
