@@ -17,8 +17,8 @@ import io.reactivex.rxjava3.core.Single;
 
 public class GameViewModel extends AndroidViewModel {
 
-    private final APIRepository apiRepository;
-    private final DatabaseRepository databaseRepository;
+    private APIRepository apiRepository;
+    private DatabaseRepository databaseRepository;
 
     public GameViewModel(@NonNull Application application) {
         super(application);
@@ -44,7 +44,7 @@ public class GameViewModel extends AndroidViewModel {
     }
 
     public void insertFavorite(GameDetails gameDetails) {
-       databaseRepository.insertFavorite(gameDetails);
+        databaseRepository.insertFavorite(gameDetails);
     }
 
     public void deleteFavorite(GameDetails gameDetails) {
