@@ -21,7 +21,7 @@ import com.ulille.mmolist.viewmodel.GameViewModel;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AllGameActivity extends AppCompatActivity {
@@ -33,7 +33,7 @@ public class AllGameActivity extends AppCompatActivity {
     ImageButton buttonGrid;
     ImageButton buttonList;
     GameViewModel viewModelGames;
-    Observable<List<Game>> observableListGames;
+    Single<List<Game>> observableListGames;
 
     public void setOnClickGrid(View v){
 

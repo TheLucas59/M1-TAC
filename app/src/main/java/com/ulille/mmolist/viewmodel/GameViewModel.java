@@ -27,7 +27,7 @@ public class GameViewModel extends AndroidViewModel {
         databaseRepository = new DatabaseRepository(application);
     }
 
-    public Observable<List<Game>> getAllGames() {
+    public Single<List<Game>> getAllGames() {
         return apiRepository.getAll();
     }
 
