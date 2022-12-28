@@ -4,18 +4,14 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.List;
+import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-import javax.annotation.Generated;
-
 @Generated("jsonschema2pojo")
-@Entity
 public class GameDetails {
 
-    @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -59,7 +55,6 @@ public class GameDetails {
     @SerializedName("minimum_system_requirements")
     @Expose
     private MinimumSystemRequirements minimumSystemRequirements;
-    @Ignore
     @SerializedName("screenshots")
     @Expose
     private List<Screenshot> screenshots = null;
