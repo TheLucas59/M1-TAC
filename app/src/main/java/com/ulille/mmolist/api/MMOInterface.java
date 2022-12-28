@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 
 public interface MMOInterface {
     @GET("games")
-    Observable<List<Game>> getAll();
+    Single<List<Game>> getAll();
 
     @GET("game")
     Single<GameDetails> getGameDetails(@Query("id") int id);
