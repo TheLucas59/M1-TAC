@@ -39,5 +39,4 @@ public class DatabaseRepository {
     public Single<Game> getFavoriteGame(int id) {
         return db.gameDAO().getFavoriteGame(id);
     }
-
 }
