@@ -35,19 +35,19 @@ public class GameViewModel extends AndroidViewModel {
         return apiRepository.getGameDetails(id);
     }
 
-    public Single<List<GameDetails>> getAllFavoriteGames() {
+    public Single<List<Game>> getAllFavoriteGames() {
         return databaseRepository.getAllFavoriteGames();
     }
 
-    public Single<GameDetails> getFavoriteGame(int id) {
+    public Single<Game> getFavoriteGame(int id) {
         return databaseRepository.getFavoriteGame(id);
     }
 
-    public void insertFavorite(GameDetails gameDetails) {
-       databaseRepository.insertFavorite(gameDetails);
+    public void insertFavorite(Game game) {
+       databaseRepository.insertFavorite(game);
     }
 
-    public void deleteFavorite(GameDetails gameDetails) {
-        databaseRepository.deleteFavorite(gameDetails);
+    public void deleteFavorite(Game game) {
+        databaseRepository.deleteFavorite(game);
     }
 }

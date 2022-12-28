@@ -1,12 +1,17 @@
 package com.ulille.mmolist.api.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("jsonschema2pojo")
+@Entity
 public class Game {
 
+    @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     @Expose
     private Integer id;
