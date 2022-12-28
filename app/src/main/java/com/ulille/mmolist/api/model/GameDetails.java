@@ -10,10 +10,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("jsonschema2pojo")
-@Entity
 public class GameDetails {
 
-    @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -57,7 +55,6 @@ public class GameDetails {
     @SerializedName("minimum_system_requirements")
     @Expose
     private MinimumSystemRequirements minimumSystemRequirements;
-    @Ignore
     @SerializedName("screenshots")
     @Expose
     private List<Screenshot> screenshots = null;
