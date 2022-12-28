@@ -6,16 +6,16 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.ulille.mmolist.api.model.GameDetails;
-import com.ulille.mmolist.database.dao.GameDetailsDAO;
+import com.ulille.mmolist.api.model.Game;
+import com.ulille.mmolist.database.dao.GameDAO;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {GameDetails.class}, version = 1, exportSchema = false)
+@Database(entities = {Game.class}, version = 1, exportSchema = false)
 public abstract class GameDatabase extends RoomDatabase {
 
-    public abstract GameDetailsDAO gameDetailsDAO();
+    public abstract GameDAO gameDAO();
 
     private static volatile GameDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
