@@ -23,7 +23,7 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.v_main_menu);
+        setContentView(R.layout.main_menu);
 
         buttonAllGame = findViewById(R.id.buttonAllGame);
         buttonFavorite = findViewById(R.id.buttonFavorite);
