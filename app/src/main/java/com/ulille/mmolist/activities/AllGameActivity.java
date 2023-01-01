@@ -34,6 +34,7 @@ public class AllGameActivity extends AppCompatActivity {
     ImageButton buttonList;
     GameViewModel viewModelGames;
     Single<List<Game>> observableListGames;
+    Single<List<Game>> listFavorites;
 
     public void setOnClickGrid(View v){
 
@@ -57,7 +58,7 @@ public class AllGameActivity extends AppCompatActivity {
     }
 
     public void setOnClickList(View v){
-        this.adapterAllGame = new GameAdapterList(getApplicationContext());
+        this.adapterAllGame = new GameAdapterList(this);
         recyclerViewAllGames.setLayoutManager(
                 new LinearLayoutManager(
                         AllGameActivity.this));
@@ -78,7 +79,7 @@ public class AllGameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.adapterAllGame = new GameAdapterList(getApplicationContext());
+        this.adapterAllGame = new GameAdapterList(this);
         setContentView(R.layout.v_all_game);
         recyclerViewAllGames = findViewById(R.id.recyclerViewAllGames);
 
@@ -94,11 +95,14 @@ public class AllGameActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerViewAllGames.setLayoutManager(layoutManager);
         viewModelGames = new ViewModelProvider(this).get(GameViewModel.class);
-        this.observableListGames = viewModelGames.getAllGames();
+        this.observableListGames = viewModelGames.getAllGamesAndFavoriteMerged();
         observableListGames.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::subscribeAllGames) ;
 
-
+        /*this.listFavorites = viewModelGames.getAllFavoriteGames();
+        listFavorites.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::subscribeAllFavorite);
+        */
         recyclerViewAllGames.setAdapter(adapterAllGame);
     }
 
@@ -106,4 +110,15 @@ public class AllGameActivity extends AppCompatActivity {
         this.adapterAllGame.setGames(games);
     }
 
+    /*private void subscribeAllFavorite(List<Game> favorites) {
+        this.adapterAllGame.setFavorites(favorites);
+    }*/
+
+    public void insertFavorite(Game game) {
+        this.viewModelGames.insertFavorite(game);
+    }
+
+    public void deleteFavorite(Game game) {
+        this.viewModelGames.deleteFavorite(game);
+    }
 }
