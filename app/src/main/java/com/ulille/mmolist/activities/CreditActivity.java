@@ -12,6 +12,6 @@ public class CreditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.credit);
+        setContentView(R.layout.v_credit);
     }
 }

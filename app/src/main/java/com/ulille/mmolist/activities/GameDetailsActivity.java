@@ -3,6 +3,7 @@ package com.ulille.mmolist.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ import com.ulille.mmolist.api.model.GameDetails;
 import com.ulille.mmolist.api.model.Screenshot;
 import com.ulille.mmolist.viewmodel.GameViewModel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -44,7 +47,7 @@ public class GameDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_details);
+        setContentView(R.layout.v_game_details);
         int idGame = -1;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

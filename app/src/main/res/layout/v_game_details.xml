@@ -9,36 +9,35 @@
         android:id="@+id/gameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="36dp"
         android:text="@string/emptyTitle"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonFavoriteDetail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/buttonFavoriteDetail"
-        android:layout_width="50dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="87dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:background="#FFFFFF"
-        android:contentDescription="@string/starFavorite"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pngwing_com"
-        tools:srcCompat="@drawable/pngwing_com" />
+        tools:srcCompat="@drawable/pngwing_com"
+        android:contentDescription="@string/starFavorite" />
 
     <ImageView
         android:id="@+id/gameThumbnail"
-        android:layout_width="374dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="231dp"
+        android:layout_height="161dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameTitle"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFavoriteDetail"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <ScrollView
@@ -216,18 +215,16 @@
 
     <ImageButton
         android:id="@+id/gameScreenshot1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="161dp"
+        android:layout_height="158dp"
         android:alpha="0.5"
         android:background="#00000000"
-        android:contentDescription="@string/gallery"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/gameThumbnail"
-        app:layout_constraintEnd_toEndOf="@+id/buttonFavoriteDetail"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/gameThumbnail"
         app:layout_constraintTop_toTopOf="@+id/gameThumbnail"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/gallery" />
 
     <TextView
         android:id="@+id/countScreenshot"
@@ -235,7 +232,6 @@
         android:layout_height="wrap_content"
         android:background="#00000000"
         android:text="@string/countScreenshot"
-        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/gameScreenshot1"
         app:layout_constraintEnd_toEndOf="@+id/gameScreenshot1"
         app:layout_constraintStart_toStartOf="@+id/gameScreenshot1"

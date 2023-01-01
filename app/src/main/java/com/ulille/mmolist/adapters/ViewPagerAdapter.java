@@ -1,6 +1,7 @@
 package com.ulille.mmolist.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerHolder> {
     @NonNull
     @Override
     public ViewPagerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        int layout = R.layout.view_pager_adapter;
+        int layout = R.layout.v_view_pager_adapter;
         View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent,false);
         return new ViewPagerHolder(view);
     }

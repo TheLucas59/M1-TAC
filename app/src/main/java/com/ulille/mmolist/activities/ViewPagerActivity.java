@@ -22,7 +22,7 @@ public class ViewPagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_pager);
+        setContentView(R.layout.v_view_pager);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             urisImage = extras.getStringArray("urisImage");

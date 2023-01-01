@@ -7,6 +7,7 @@ import com.ulille.mmolist.api.model.GameDetails;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 
 public class APIRepository {

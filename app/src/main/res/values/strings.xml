@@ -48,9 +48,5 @@
     <string name="favoriteTitle">Favoris</string>
     <string name="gallery">Gallery of various screenshots of the game</string>
     <string name="starFavorite">star filled if favorite and empty if not</string>
-    <!-- Credits -->
-    <string name="titleCredit">Credits</string>
-    <string name="creditImage"><a href="https://www.flaticon.com/fr/icones-gratuites/mmorpg" title="mmorpg icônes">Mmorpg icônes créées par Flat Icons - Flaticon</a></string>
-    <string name="creditAPI">API fournie par MMOBomb</string>
-    <string name="creditApplication">Application créée par Lucas Plé et Aurélien Plancke</string>
+
 </resources>

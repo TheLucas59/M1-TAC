@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_page);
+        setContentView(R.layout.v_home_page);
         buttonStart = findViewById(R.id.buttonStart);
         buttonStart.setOnClickListener(mOnClickStart);
     }

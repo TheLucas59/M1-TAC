@@ -18,7 +18,7 @@ public class GameAdapterList extends AbstractGameAdapter<GameViewHolderList> {
     @NonNull
     @Override
     public GameViewHolderList onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        int layout = R.layout.gamecard_list;
+        int layout = R.layout.v_gamecard_list;
         View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
         return new GameViewHolderList(view);
     }
