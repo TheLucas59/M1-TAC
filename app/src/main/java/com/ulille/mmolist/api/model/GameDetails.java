@@ -164,7 +164,11 @@ public class GameDetails {
     }
 
     public String getMinimumSystemRequirements() {
-        return minimumSystemRequirements.toString();
+        if(minimumSystemRequirements != null) {
+            return minimumSystemRequirements.toString();
+        }else{
+            return "Pas d'informations";
+        }
     }
 
     public void setMinimumSystemRequirements(MinimumSystemRequirements minimumSystemRequirements) {

@@ -11,6 +11,6 @@ public class RandomActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.v_game_details);
+        setContentView(R.layout.game_details);
     }
 }
