@@ -1,9 +1,15 @@
 package com.ulille.mmolist.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +45,7 @@ public class AllGameActivity extends AppCompatActivity {
     Single<List<Game>> observableListGames;
     String layout = "";
     int position = 0;
+    ActivityResultLauncher<Intent> detailsActivityLauncher;
 
     public void setOnClickGrid(View v){
         position = this.recyclerViewAllGames.getChildAdapterPosition(this.recyclerViewAllGames.getChildAt(0));
@@ -68,6 +75,12 @@ public class AllGameActivity extends AppCompatActivity {
 
         recyclerViewAllGames.setAdapter(this.adapterAllGame);
         changeButtonClickable(layout);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
 
@@ -105,6 +118,22 @@ public class AllGameActivity extends AppCompatActivity {
                 .subscribe(this::subscribeAllGames) ;
 
         recyclerViewAllGames.setAdapter(adapterAllGame);
+
+        detailsActivityLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if(data != null) {
+                            int position = data.getIntExtra("position", 0);
+                            boolean favorite = data.getBooleanExtra("favorite", false);
+                            List<Game> games = adapterAllGame.getGames();
+                            Game game = games.get(position);
+                            game.setFavorite(favorite);
+                            adapterAllGame.notifyDataSetChanged();
+                        }
+                    }
+                });
     }
 
     private void subscribeAllGames(List<Game> games){
@@ -146,5 +175,13 @@ public class AllGameActivity extends AppCompatActivity {
             buttonList.setClickable(false);
             buttonList.setEnabled(false);
         }
+    }
+
+    public void openDetailsActivity(Game game, int position) {
+        Intent detailsActivityIntent = new Intent(this, GameDetailsActivity.class);
+        detailsActivityIntent.putExtra("idGame", game.getId());
+        detailsActivityIntent.putExtra("favorite", game.isFavorite());
+        detailsActivityIntent.putExtra("position", position);
+        detailsActivityLauncher.launch(detailsActivityIntent);
     }
 }

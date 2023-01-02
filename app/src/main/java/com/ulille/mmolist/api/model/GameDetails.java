@@ -183,4 +183,20 @@ public class GameDetails {
         this.screenshots = screenshots;
     }
 
+    public static Game getGameFromGameDetails(GameDetails gameDetails) {
+        Game g = new Game();
+        g.setId(gameDetails.getId());
+        g.setTitle(gameDetails.getTitle());
+        g.setThumbnail(gameDetails.getThumbnail());
+        g.setShortDescription(gameDetails.getShortDescription());
+        g.setGameUrl(gameDetails.getGameUrl());
+        g.setGenre(gameDetails.getGenre());
+        g.setPlatform(gameDetails.getPlatform());
+        g.setPublisher(gameDetails.getPublisher());
+        g.setDeveloper(gameDetails.getDeveloper());
+        g.setReleaseDate(gameDetails.getReleaseDate());
+        g.setProfileUrl(gameDetails.getProfileUrl());
+        return g;
+    }
+
 }
