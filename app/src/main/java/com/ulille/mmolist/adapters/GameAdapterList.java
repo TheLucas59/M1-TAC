@@ -11,8 +11,8 @@ import com.ulille.mmolist.R;
 import com.ulille.mmolist.viewholders.GameViewHolderList;
 
 public class GameAdapterList extends AbstractGameAdapter<GameViewHolderList> {
-    public GameAdapterList(Context context) {
-        super(context);
+    public GameAdapterList(Context context, String activityName) {
+        super(context, activityName);
     }
 
     @NonNull

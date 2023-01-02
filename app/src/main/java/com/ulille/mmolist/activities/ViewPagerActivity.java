@@ -33,12 +33,7 @@ public class ViewPagerActivity extends AppCompatActivity {
         tablayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(new ViewPagerAdapter(getApplicationContext(), urisImage));
-        TabLayoutMediator tlm = new TabLayoutMediator(tablayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText("Screenshot " + ++position);
-            }
-        });
+        TabLayoutMediator tlm = new TabLayoutMediator(tablayout, viewPager, (tab, position) -> tab.setText("Screenshot " + ++position));
         tlm.attach();
     }
 
