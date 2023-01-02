@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ulille.mmolist.R;
+import com.ulille.mmolist.activities.AllGameActivity;
 import com.ulille.mmolist.activities.GameDetailsActivity;
 import com.ulille.mmolist.api.model.Game;
 import com.ulille.mmolist.viewholders.AbstractGameViewHolder;
+import com.ulille.mmolist.viewmodel.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,21 +23,16 @@ import java.util.List;
 public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> extends RecyclerView.Adapter<VH> {
     List<Game> games;
     Context context;
-    List<Game> favorite;
-
 
     public AbstractGameAdapter(Context context){
         super();
         this.games = new ArrayList<>();
         this.context = context;
-        this.favorite = new ArrayList<>();
     }
-
 
     @NonNull
     @Override
     abstract public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
-
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
@@ -44,20 +41,28 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
             startActivityIntent.putExtra("idGame", games.get(position).getId());
             startActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(startActivityIntent);
-            games.get(position);
         });
         Game game = games.get(position);
         holder.buttonAddFavorite.setOnClickListener(view -> {
             ImageButton buttonFavorite = holder.buttonAddFavorite;
-            if (favorite.contains(games.get(position))) {
-                favorite.remove(games.get(position));
+            if (game.isFavorite()) {
+                ((AllGameActivity) context).deleteFavorite(game);
+                game.setFavorite(false);
                 buttonFavorite.setImageResource(R.drawable.pngwing_com);
             } else {
-                favorite.add(games.get(position));
+                ((AllGameActivity) context).insertFavorite(game);
+                game.setFavorite(true);
                 buttonFavorite.setImageResource(R.drawable.pngwing_com2);
             }
+            notifyDataSetChanged();
         });
 
+        if(game.isFavorite()) {
+            holder.buttonAddFavorite.setImageResource(R.drawable.pngwing_com2);
+        }
+        else {
+            holder.buttonAddFavorite.setImageResource(R.drawable.pngwing_com);
+        }
         holder.titleCard.setText(game.getTitle());
         if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             Glide.with(context)
@@ -73,7 +78,6 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
 
     public void setGames(List<Game> games) {
         this.games.addAll(games);
-        notifyDataSetChanged();
     }
 
     public List<Game> getGames() {
@@ -84,6 +88,5 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
     public int getItemCount() {
         return this.games.size();
     }
-
 
 }

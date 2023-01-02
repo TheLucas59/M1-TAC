@@ -1,6 +1,7 @@
 package com.ulille.mmolist.api.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import javax.annotation.Generated;
@@ -10,6 +11,9 @@ import com.google.gson.annotations.SerializedName;
 @Generated("jsonschema2pojo")
 @Entity
 public class Game {
+
+    @Ignore
+    private boolean favorite = false;
 
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
@@ -132,6 +136,19 @@ public class Game {
 
     public void setProfileUrl(String profileUrl) {
         this.profileUrl = profileUrl;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public static Game markAsFavorite(Game game) {
+        game.setFavorite(true);
+        return game;
     }
 
 }

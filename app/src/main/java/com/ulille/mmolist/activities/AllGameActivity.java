@@ -43,7 +43,7 @@ public class AllGameActivity extends AppCompatActivity {
     public void setOnClickGrid(View v){
         position = this.recyclerViewAllGames.getChildAdapterPosition(this.recyclerViewAllGames.getChildAt(0));
         layout = LAYOUT_GRID;
-        this.adapterAllGame = new GameAdapterGrid(getApplicationContext());
+        this.adapterAllGame = new GameAdapterGrid(this);
         this.recyclerViewAllGames.setLayoutManager(
                 new GridLayoutManager(
                         AllGameActivity.this, 2));
@@ -56,9 +56,9 @@ public class AllGameActivity extends AppCompatActivity {
     }
 
     public void setOnClickList(View v){
+        this.adapterAllGame = new GameAdapterList(this);
         position = this.recyclerViewAllGames.getChildAdapterPosition(this.recyclerViewAllGames.getChildAt(0));
         layout = LAYOUT_LIST;
-        this.adapterAllGame = new GameAdapterList(getApplicationContext());
         recyclerViewAllGames.setLayoutManager(
                 new LinearLayoutManager(
                         AllGameActivity.this));
@@ -91,16 +91,16 @@ public class AllGameActivity extends AppCompatActivity {
         if(layout != null && layout.equals(LAYOUT_GRID)){
             layoutManager = new GridLayoutManager(this, 2);
             changeButtonClickable(layout);
-            this.adapterAllGame = new GameAdapterGrid(getApplicationContext());
+            this.adapterAllGame = new GameAdapterGrid(this);
         }else{
             layoutManager = new LinearLayoutManager(this);
             changeButtonClickable(layout);
-            this.adapterAllGame = new GameAdapterList(getApplicationContext());
+            this.adapterAllGame = new GameAdapterList(this);
         }
 
         recyclerViewAllGames.setLayoutManager(layoutManager);
         viewModelGames = new ViewModelProvider(this).get(GameViewModel.class);
-        this.observableListGames = viewModelGames.getAllGames();
+        this.observableListGames = viewModelGames.getAllGamesAndFavoriteMerged();
         observableListGames.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::subscribeAllGames) ;
 
@@ -110,6 +110,14 @@ public class AllGameActivity extends AppCompatActivity {
     private void subscribeAllGames(List<Game> games){
         this.adapterAllGame.setGames(games);
         recyclerViewAllGames.scrollToPosition(position);
+    }
+
+    public void insertFavorite(Game game) {
+        this.viewModelGames.insertFavorite(game);
+    }
+
+    public void deleteFavorite(Game game) {
+        this.viewModelGames.deleteFavorite(game);
     }
 
     @Override

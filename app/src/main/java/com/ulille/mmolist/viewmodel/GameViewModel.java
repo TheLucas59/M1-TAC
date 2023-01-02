@@ -20,6 +20,9 @@ public class GameViewModel extends AndroidViewModel {
     private APIRepository apiRepository;
     private DatabaseRepository databaseRepository;
 
+    private List<Game> games;
+    private List<Game> favorites;
+
     public GameViewModel(@NonNull Application application) {
         super(application);
 
@@ -33,6 +36,24 @@ public class GameViewModel extends AndroidViewModel {
 
     public Single<GameDetails> getGameDetails(int id) {
         return apiRepository.getGameDetails(id);
+    }
+
+    public Single<List<Game>> getAllGamesAndFavoriteMerged() {
+        Observable<Game> apiGames = getAllGames().flatMapObservable(Observable::fromIterable);
+        Observable<Game> dbGames = getAllFavoriteGames().flatMapObservable(Observable::fromIterable);
+
+        Observable<Game> mergedGames = Observable.merge(apiGames, dbGames)
+                .groupBy(game -> game.getId())
+                .flatMapSingle(grp -> grp.toList()
+                        .map(l -> {
+                            if(l.size() > 1) {
+                                return Game.markAsFavorite(l.stream().findFirst().get());
+                            }
+                            return l.stream().findFirst().get();
+                        })
+                );
+
+        return mergedGames.toList();
     }
 
     public Single<List<Game>> getAllFavoriteGames() {
