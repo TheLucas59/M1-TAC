@@ -1,11 +1,15 @@
 package com.ulille.mmolist.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +44,7 @@ public class AllGameActivity extends AppCompatActivity {
     Single<List<Game>> observableListGames;
     String layout = "";
     int position = 0;
+    ActivityResultLauncher<Intent> detailsActivityLauncher;
     String activityName;
 
     public void setOnClickGrid(View v){
@@ -68,9 +73,7 @@ public class AllGameActivity extends AppCompatActivity {
         observableListGames.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::subscribeAllGames) ;
 
-
         recyclerViewAllGames.setAdapter(this.adapterAllGame);
-
 
         changeButtonClickable(layout);
 
@@ -119,9 +122,28 @@ public class AllGameActivity extends AppCompatActivity {
             searchView.setOnQueryTextListener(textListener);
         }
         observableListGames.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::subscribeAllGames) ;
+                .subscribe(this::subscribeAllGames);
 
         recyclerViewAllGames.setAdapter(adapterAllGame);
+
+        detailsActivityLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if(data != null) {
+                            int position = data.getIntExtra(Constant.POSITION, 0);
+                            boolean favorite = data.getBooleanExtra(Constant.FAVORITE, false);
+                            List<Game> games = adapterAllGame.getOriginalList();
+                            Game game = games.get(position);
+                            game.setFavorite(favorite);
+                            adapterAllGame.notifyDataSetChanged();
+                        }
+                    }
+                    else {
+                        Toast.makeText(this, "Une erreur est survenue.", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     @Override
@@ -171,6 +193,14 @@ public class AllGameActivity extends AppCompatActivity {
             buttonList.setClickable(false);
             buttonList.setEnabled(false);
         }
+    }
+
+    public void openDetailsActivity(Game game, int position) {
+        Intent detailsActivityIntent = new Intent(this, GameDetailsActivity.class);
+        detailsActivityIntent.putExtra(Constant.IDGAME, game.getId());
+        detailsActivityIntent.putExtra(Constant.FAVORITE, game.isFavorite());
+        detailsActivityIntent.putExtra(Constant.POSITION, position);
+        detailsActivityLauncher.launch(detailsActivityIntent);
     }
 
     SearchView.OnQueryTextListener textListener = new SearchView.OnQueryTextListener() {

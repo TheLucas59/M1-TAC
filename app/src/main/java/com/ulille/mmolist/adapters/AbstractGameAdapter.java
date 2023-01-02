@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,10 +45,7 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
         holder.itemView.setOnClickListener(view -> {
-            Intent startActivityIntent = new Intent(context, GameDetailsActivity.class);
-            startActivityIntent.putExtra("idGame", games.get(position).getId());
-            startActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(startActivityIntent);
+            ((AllGameActivity) context).openDetailsActivity(games.get(position), position);
         });
         Game game = games.get(position);
         holder.buttonAddFavorite.setOnClickListener(view -> {
