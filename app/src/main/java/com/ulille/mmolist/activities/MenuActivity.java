@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ulille.mmolist.R;
 
+import util.Constant;
+
 public class MenuActivity extends AppCompatActivity {
     Button buttonAllGame;
     Button buttonFavorite;
@@ -39,11 +41,13 @@ public class MenuActivity extends AppCompatActivity {
 
     private final View.OnClickListener mOnClickAllGame = view -> {
         Intent startActivityIntent = new Intent(MenuActivity.this, AllGameActivity.class);
+        startActivityIntent.putExtra(Constant.EXTRA_ACTIVITY_NAME, Constant.EXTRAS_ALL_GAME);
         secondActivityLauncher.launch(startActivityIntent);
     };
 
     private final View.OnClickListener mOnClickFavorite = view -> {
-        Intent startActivityIntent = new Intent(MenuActivity.this, FavoriteActivity.class);
+        Intent startActivityIntent = new Intent(MenuActivity.this, AllGameActivity.class);
+        startActivityIntent.putExtra(Constant.EXTRA_ACTIVITY_NAME, Constant.EXTRAS_FAVORITE);
         secondActivityLauncher.launch(startActivityIntent);
     };
 

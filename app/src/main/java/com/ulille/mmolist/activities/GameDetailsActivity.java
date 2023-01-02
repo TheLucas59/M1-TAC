@@ -1,5 +1,6 @@
 package com.ulille.mmolist.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -91,6 +92,7 @@ public class GameDetailsActivity extends AppCompatActivity {
                 Log.d("ERR", e.getMessage());
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onSuccess(GameDetails game) {
                 gameTitle.setText(game.getTitle());

@@ -1,6 +1,7 @@
 package com.ulille.mmolist.viewmodel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -19,9 +20,6 @@ public class GameViewModel extends AndroidViewModel {
 
     private APIRepository apiRepository;
     private DatabaseRepository databaseRepository;
-
-    private List<Game> games;
-    private List<Game> favorites;
 
     public GameViewModel(@NonNull Application application) {
         super(application);
@@ -43,7 +41,7 @@ public class GameViewModel extends AndroidViewModel {
         Observable<Game> dbGames = getAllFavoriteGames().flatMapObservable(Observable::fromIterable);
 
         Observable<Game> mergedGames = Observable.merge(apiGames, dbGames)
-                .groupBy(game -> game.getId())
+                .groupBy(Game::getId)
                 .flatMapSingle(grp -> grp.toList()
                         .map(l -> {
                             if(l.size() > 1) {
@@ -57,15 +55,13 @@ public class GameViewModel extends AndroidViewModel {
     }
 
     public Single<List<Game>> getAllFavoriteGames() {
-        return databaseRepository.getAllFavoriteGames();
-    }
-
-    public Single<Game> getFavoriteGame(int id) {
-        return databaseRepository.getFavoriteGame(id);
+        return databaseRepository.getAllFavoriteGames()
+                .flatMapObservable(Observable::fromIterable)
+                    .map(Game::markAsFavorite).toList();
     }
 
     public void insertFavorite(Game game) {
-       databaseRepository.insertFavorite(game);
+        databaseRepository.insertFavorite(game);
     }
 
     public void deleteFavorite(Game game) {

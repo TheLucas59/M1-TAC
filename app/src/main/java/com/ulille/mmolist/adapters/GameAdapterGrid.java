@@ -11,8 +11,8 @@ import com.ulille.mmolist.R;
 import com.ulille.mmolist.viewholders.GameViewHolderGrid;
 
 public class GameAdapterGrid extends AbstractGameAdapter<GameViewHolderGrid>{
-    public GameAdapterGrid(Context context) {
-        super(context);
+    public GameAdapterGrid(Context context, String activityName) {
+        super(context, activityName);
     }
 
     @NonNull
