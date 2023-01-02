@@ -18,7 +18,7 @@ public class GameAdapterGrid extends AbstractGameAdapter<GameViewHolderGrid>{
     @NonNull
     @Override
     public GameViewHolderGrid onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        int layout = R.layout.v_gamecard_grid;
+        int layout = R.layout.gamecard_grid;
         View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
         return new GameViewHolderGrid(view);
     }

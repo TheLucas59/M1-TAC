@@ -2,6 +2,7 @@ package com.ulille.mmolist.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
@@ -46,9 +47,11 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
             ImageButton buttonFavorite = holder.buttonAddFavorite;
             if (game.isFavorite()) {
                 ((AllGameActivity) context).deleteFavorite(game);
+                game.setFavorite(false);
                 buttonFavorite.setImageResource(R.drawable.pngwing_com);
             } else {
                 ((AllGameActivity) context).insertFavorite(game);
+                game.setFavorite(true);
                 buttonFavorite.setImageResource(R.drawable.pngwing_com2);
             }
             notifyDataSetChanged();
@@ -61,21 +64,21 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
             holder.buttonAddFavorite.setImageResource(R.drawable.pngwing_com);
         }
         holder.titleCard.setText(game.getTitle());
-        Glide.with(context)
-                .load(game.getThumbnail())
-                .fitCenter()
-                .into(holder.imageGame);
+        if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Glide.with(context)
+                    .load(game.getThumbnail())
+                    .fitCenter()
+                    .into(holder.imageGame);
+        }else{
+            Glide.with(context)
+                    .load(game.getThumbnail())
+                    .into(holder.imageGame);
+        }
     }
 
     public void setGames(List<Game> games) {
         this.games.addAll(games);
-        notifyDataSetChanged();
     }
-
-    /*public void setFavorites(List<Game> favorites) {
-        this.favorites.addAll(favorites);
-        notifyDataSetChanged();
-    }*/
 
     public List<Game> getGames() {
         return games;
