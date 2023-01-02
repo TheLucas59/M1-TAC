@@ -3,6 +3,7 @@ package com.ulille.mmolist.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
@@ -21,14 +22,20 @@ import com.ulille.mmolist.viewmodel.GameViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.Constant;
+
 public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> extends RecyclerView.Adapter<VH> {
+    List<Game> originalList;
     List<Game> games;
     Context context;
+    String activityName;
 
-    public AbstractGameAdapter(Context context){
+    public AbstractGameAdapter(Context context, String activity){
         super();
         this.games = new ArrayList<>();
+        this.originalList = new ArrayList<>();
         this.context = context;
+        this.activityName = activity;
     }
 
     @NonNull
@@ -47,6 +54,10 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
                 ((AllGameActivity) context).deleteFavorite(game);
                 game.setFavorite(false);
                 buttonFavorite.setImageResource(R.drawable.pngwing_com);
+                if(this.activityName.equals(Constant.EXTRAS_FAVORITE)){
+                    games.remove(position);
+                    notifyItemRemoved(position);
+                }
             } else {
                 ((AllGameActivity) context).insertFavorite(game);
                 game.setFavorite(true);
@@ -57,8 +68,7 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
 
         if(game.isFavorite()) {
             holder.buttonAddFavorite.setImageResource(R.drawable.pngwing_com2);
-        }
-        else {
+        }else{
             holder.buttonAddFavorite.setImageResource(R.drawable.pngwing_com);
         }
         holder.titleCard.setText(game.getTitle());
@@ -75,13 +85,24 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
     }
 
     public void setGames(List<Game> games) {
-        this.games.addAll(games);
+        this.games = games;
+        if(this.originalList.size() == 0) {
+            this.originalList.addAll(games);
+        }
     }
 
-    public List<Game> getGames() {
-        return games;
+    public List<Game> getOriginalList() {
+        return this.originalList;
     }
 
+    public void setOriginalList(List<Game> originalList) {
+        this.originalList = originalList;
+    }
+
+    public void filterList(List<Game> games){
+        this.games = games;
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return this.games.size();

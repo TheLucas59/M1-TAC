@@ -1,5 +1,6 @@
 package com.ulille.mmolist.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import util.Constant;
 
 public class GameDetailsActivity extends AppCompatActivity {
     TextView gameTitle;
@@ -101,6 +103,7 @@ public class GameDetailsActivity extends AppCompatActivity {
                 Log.d("ERR", e.getMessage());
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onSuccess(GameDetails game) {
                 gameTitle.setText(game.getTitle());
@@ -108,16 +111,17 @@ public class GameDetailsActivity extends AppCompatActivity {
                         .load(game.getThumbnail())
                         .fitCenter()
                         .into(gameThumbnail);
+
                 List<Screenshot> screenshots = game.getScreenshots();
                 String[] allURIArr = new String[screenshots.size()];
                 for (int i = 0; i < screenshots.size(); i++) {
                     allURIArr[i] = screenshots.get(i).getImage();
                 }
+
                 Glide.with(getApplicationContext())
                         .load(screenshots.get(0).getImage())
                         .fitCenter()
                         .into(gameScreenshot1);
-
 
                 gameScreenshot1.setOnClickListener(view -> {
                     Intent intent = new Intent(getApplicationContext(), ViewPagerActivity.class);
@@ -151,9 +155,9 @@ public class GameDetailsActivity extends AppCompatActivity {
 
     public void backCallback() {
         Intent intent = new Intent();
-        intent.putExtra("favorite", favorite);
-        intent.putExtra("idGame", idGame);
-        intent.putExtra("position", position);
+        intent.putExtra(Constant.FAVORITE, favorite);
+        intent.putExtra(Constant.IDGAME, idGame);
+        intent.putExtra(Constant.POSITION, position);
         setResult(RESULT_OK, intent);
         finish();
     }
