@@ -11,4 +11,5 @@ public class Constant {
     public static final String IDGAME = "idGame";
     public static final String FAVORITE = "favorite";
     public static final String POSITION = "position";
+    public static final String URISIMAGE = "urisImage";
 }

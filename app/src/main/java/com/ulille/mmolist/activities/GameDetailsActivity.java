@@ -113,21 +113,26 @@ public class GameDetailsActivity extends AppCompatActivity {
                         .into(gameThumbnail);
 
                 List<Screenshot> screenshots = game.getScreenshots();
-                String[] allURIArr = new String[screenshots.size()];
-                for (int i = 0; i < screenshots.size(); i++) {
-                    allURIArr[i] = screenshots.get(i).getImage();
+                if(screenshots.size() > 0) {
+                    String[] allURIArr = new String[screenshots.size()];
+                    for (int i = 0; i < screenshots.size(); i++) {
+                        allURIArr[i] = screenshots.get(i).getImage();
+                    }
+
+                    Glide.with(getApplicationContext())
+                            .load(screenshots.get(0).getImage())
+                            .fitCenter()
+                            .into(gameScreenshot1);
+
+                    gameScreenshot1.setOnClickListener(view -> {
+                        Intent intent = new Intent(getApplicationContext(), ViewPagerActivity.class);
+                        intent.putExtra(Constant.URISIMAGE, allURIArr);
+                        startActivity(intent);
+                    });
                 }
-
-                Glide.with(getApplicationContext())
-                        .load(screenshots.get(0).getImage())
-                        .fitCenter()
-                        .into(gameScreenshot1);
-
-                gameScreenshot1.setOnClickListener(view -> {
-                    Intent intent = new Intent(getApplicationContext(), ViewPagerActivity.class);
-                    intent.putExtra("urisImage", allURIArr);
-                    startActivity(intent);
-                });
+                else {
+                    gameScreenshot1.setImageResource(R.drawable.questionmark);
+                }
 
                 tvCategorieEdit.setText(game.getGenre());
                 tvDescriptionEdit.setText(HtmlCompat.fromHtml(game.getDescription(),HtmlCompat.FROM_HTML_MODE_LEGACY));
