@@ -126,9 +126,12 @@ public class GameDetailsActivity extends AppCompatActivity {
 
                     gameScreenshot1.setOnClickListener(view -> {
                         Intent intent = new Intent(getApplicationContext(), ViewPagerActivity.class);
-                        intent.putExtra("urisImage", allURIArr);
+                        intent.putExtra(Constant.URISIMAGE, allURIArr);
                         startActivity(intent);
                     });
+                }
+                else {
+                    gameScreenshot1.setImageResource(R.drawable.questionmark);
                 }
 
                 tvCategorieEdit.setText(game.getGenre());
