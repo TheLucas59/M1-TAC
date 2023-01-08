@@ -17,6 +17,7 @@ import com.ulille.mmolist.api.model.Game;
 import com.ulille.mmolist.viewmodel.GameViewModel;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -32,7 +33,7 @@ public class MenuActivity extends AppCompatActivity {
     Button buttonRandom;
     Button buttonCredit;
 
-    ActivityResultLauncher<Intent> secondActivityLauncher = createActivityLauncher();
+    final ActivityResultLauncher<Intent> secondActivityLauncher = createActivityLauncher();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +100,7 @@ public class MenuActivity extends AppCompatActivity {
                 }
 
                 Intent startActivityIntent = new Intent(MenuActivity.this, GameDetailsActivity.class);
-                startActivityIntent.putExtra(Constant.IDGAME, randomGame.getId());
+                startActivityIntent.putExtra(Constant.IDGAME, Objects.requireNonNull(randomGame).getId());
                 startActivityIntent.putExtra(Constant.FAVORITE, randomGame.isFavorite());
                 secondActivityLauncher.launch(startActivityIntent);
             }

@@ -13,8 +13,8 @@ import com.ulille.mmolist.R;
 import com.ulille.mmolist.viewholders.ViewPagerHolder;
 
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerHolder> {
-    Context context;
-    String[] uris;
+    final Context context;
+    final String[] uris;
     public ViewPagerAdapter(Context context, String[] uris){
         this.context = context;
         this.uris = uris;

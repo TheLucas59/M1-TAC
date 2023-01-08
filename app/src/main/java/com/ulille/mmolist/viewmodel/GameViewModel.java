@@ -1,7 +1,6 @@
 package com.ulille.mmolist.viewmodel;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -18,8 +17,8 @@ import io.reactivex.rxjava3.core.Single;
 
 public class GameViewModel extends AndroidViewModel {
 
-    private APIRepository apiRepository;
-    private DatabaseRepository databaseRepository;
+    private final APIRepository apiRepository;
+    private final DatabaseRepository databaseRepository;
 
     public GameViewModel(@NonNull Application application) {
         super(application);
@@ -47,7 +46,10 @@ public class GameViewModel extends AndroidViewModel {
                             if(l.size() > 1) {
                                 return Game.markAsFavorite(l.stream().findFirst().get());
                             }
-                            return l.stream().findFirst().get();
+                            if(l.stream().findFirst().isPresent()) {
+                                return l.stream().findFirst().get();
+                            }
+                            return null;
                         })
                 );
 

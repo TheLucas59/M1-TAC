@@ -1,12 +1,14 @@
 package com.ulille.mmolist.api.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import javax.annotation.Generated;
 
 @Generated("jsonschema2pojo")
 @Entity
@@ -50,6 +52,7 @@ public class Game {
     @Expose
     private String profileUrl;
 
+    @NonNull
     public Integer getId() {
         return id;
     }

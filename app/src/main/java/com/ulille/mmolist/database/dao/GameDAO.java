@@ -6,7 +6,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import com.ulille.mmolist.api.model.Game;
-import com.ulille.mmolist.api.model.GameDetails;
 
 import java.util.List;
 
