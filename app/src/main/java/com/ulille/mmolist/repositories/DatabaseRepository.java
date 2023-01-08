@@ -12,8 +12,8 @@ import io.reactivex.rxjava3.core.Single;
 
 public class DatabaseRepository {
 
-    private GameDatabase db;
-    private GameDAO gameDAO;
+    private final GameDatabase db;
+    private final GameDAO gameDAO;
 
     public DatabaseRepository(Application application) {
         db = GameDatabase.getDatabase(application);
@@ -21,15 +21,11 @@ public class DatabaseRepository {
     }
 
     public void insertFavorite(Game game) {
-        GameDatabase.databaseWriteExecutor.execute(() -> {
-            gameDAO.insert(game);
-        });
+        GameDatabase.databaseWriteExecutor.execute(() -> gameDAO.insert(game));
     }
 
     public void deleteFavorite(Game game) {
-        GameDatabase.databaseWriteExecutor.execute(() -> {
-            gameDAO.delete(game);
-        });
+        GameDatabase.databaseWriteExecutor.execute(() -> gameDAO.delete(game));
     }
 
     public Single<List<Game>> getAllFavoriteGames() {

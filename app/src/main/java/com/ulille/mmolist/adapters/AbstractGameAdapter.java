@@ -1,23 +1,18 @@
 package com.ulille.mmolist.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ulille.mmolist.R;
 import com.ulille.mmolist.activities.AllGameActivity;
-import com.ulille.mmolist.activities.GameDetailsActivity;
 import com.ulille.mmolist.api.model.Game;
 import com.ulille.mmolist.viewholders.AbstractGameViewHolder;
-import com.ulille.mmolist.viewmodel.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +20,10 @@ import java.util.List;
 import util.Constant;
 
 public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> extends RecyclerView.Adapter<VH> {
-    List<Game> originalList;
+    final List<Game> originalList;
     List<Game> games;
-    Context context;
-    String activityName;
+    final Context context;
+    final String activityName;
 
     public AbstractGameAdapter(Context context, String activity){
         super();
@@ -44,9 +39,7 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        holder.itemView.setOnClickListener(view -> {
-            ((AllGameActivity) context).openDetailsActivity(games.get(position), position);
-        });
+        holder.itemView.setOnClickListener(view -> ((AllGameActivity) context).openDetailsActivity(games.get(position), position));
         Game game = games.get(position);
         holder.buttonAddFavorite.setOnClickListener(view -> {
             ImageButton buttonFavorite = holder.buttonAddFavorite;
@@ -93,10 +86,6 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
 
     public List<Game> getOriginalList() {
         return this.originalList;
-    }
-
-    public void setOriginalList(List<Game> originalList) {
-        this.originalList = originalList;
     }
 
     public void filterList(List<Game> games){

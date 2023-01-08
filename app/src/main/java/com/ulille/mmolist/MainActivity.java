@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ulille.mmolist.activities.MenuActivity;
 
 public class MainActivity extends AppCompatActivity {
-    ActivityResultLauncher<Intent> secondActivityLauncher = createSecondActivityLauncher();
+    final ActivityResultLauncher<Intent> secondActivityLauncher = createSecondActivityLauncher();
     Button buttonStart;
 
     @Override

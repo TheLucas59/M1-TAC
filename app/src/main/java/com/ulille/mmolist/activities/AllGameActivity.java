@@ -37,7 +37,7 @@ public class AllGameActivity extends AppCompatActivity {
 
     SearchView searchView;
     RecyclerView recyclerViewAllGames;
-    AbstractGameAdapter adapterAllGame;
+    AbstractGameAdapter<?> adapterAllGame;
     ImageButton buttonGrid;
     ImageButton buttonList;
     GameViewModel viewModelGames;
@@ -47,7 +47,7 @@ public class AllGameActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> detailsActivityLauncher;
     String activityName;
 
-    public void setOnClickGrid(View v){
+    public void setOnClickGrid(){
         this.adapterAllGame = new GameAdapterGrid(this, activityName);
         position = this.recyclerViewAllGames.getChildAdapterPosition(this.recyclerViewAllGames.getChildAt(0));
         layout = Constant.LAYOUT_GRID;
@@ -56,13 +56,12 @@ public class AllGameActivity extends AppCompatActivity {
                         AllGameActivity.this, 2));
 
         observableListGames.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::subscribeAllGames) ;
-
+                    .subscribe(this::subscribeAllGames);
         recyclerViewAllGames.setAdapter(this.adapterAllGame);
         changeButtonClickable(layout);
     }
 
-    public void setOnClickList(View v){
+    public void setOnClickList(){
         this.adapterAllGame = new GameAdapterList(this, activityName);
         position = this.recyclerViewAllGames.getChildAdapterPosition(this.recyclerViewAllGames.getChildAt(0));
         layout = Constant.LAYOUT_LIST;
@@ -93,10 +92,10 @@ public class AllGameActivity extends AppCompatActivity {
         recyclerViewAllGames = findViewById(R.id.recyclerViewAllGames);
 
         buttonGrid = findViewById(R.id.buttonGrid);
-        buttonGrid.setOnClickListener(this::setOnClickGrid);
+        buttonGrid.setOnClickListener(v -> setOnClickGrid());
 
         buttonList = findViewById(R.id.buttonList);
-        buttonList.setOnClickListener(this::setOnClickList);
+        buttonList.setOnClickListener(v -> setOnClickList());
 
         searchView = findViewById(R.id.searchView);
 
@@ -203,7 +202,7 @@ public class AllGameActivity extends AppCompatActivity {
         detailsActivityLauncher.launch(detailsActivityIntent);
     }
 
-    SearchView.OnQueryTextListener textListener = new SearchView.OnQueryTextListener() {
+    final SearchView.OnQueryTextListener textListener = new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String search) {
             List<Game> originalList = adapterAllGame.getOriginalList();

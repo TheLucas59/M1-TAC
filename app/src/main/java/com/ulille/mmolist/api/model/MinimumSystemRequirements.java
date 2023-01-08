@@ -66,6 +66,19 @@ public class MinimumSystemRequirements {
 
     @Override
     public String toString() {
-        return os + '\n' + processor + '\n' + memory + '\n'  + graphics + '\n' + storage;
+        StringBuilder strb = new StringBuilder();
+        if(os != null)
+            strb.append(os + "\n");
+        if(processor != null)
+            strb.append(processor + "\n");
+        if(memory != null)
+            strb.append(memory + "\n");
+        if(graphics != null)
+            strb.append(graphics + "\n");
+        if(storage != null)
+            strb.append(storage + "\n");
+        if(strb.length() == 0)
+            return "Pas d'informations";
+        return strb.toString();
     }
 }

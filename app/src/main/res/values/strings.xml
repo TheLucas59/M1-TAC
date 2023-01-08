@@ -16,13 +16,7 @@
     <string name="grid"> Grid</string>
 
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- Utils -->
     <string name="addFavoriteDesc">Add to favorite</string>
     <string name="imageNameDesc"> Image that represent the game</string>
@@ -43,9 +37,9 @@
     <string name="tvDeveloper">Developpeurs:</string>
     <string name="tvDeveloperEdit">No developeur info available</string>
     <string name="countScreenshot">No screenshot available</string>
+    <string name="contentDescriptionPrimaryImage">Principal screenshot of the game</string>
 
     <!-- Favorite -->
-    <string name="favoriteTitle">Favoris</string>
     <string name="gallery">Gallery of various screenshots of the game</string>
     <string name="starFavorite">star filled if favorite and empty if not</string>
     <!-- Credits -->
@@ -53,4 +47,5 @@
     <string name="creditImage"><a href="https://www.flaticon.com/fr/icones-gratuites/mmorpg" title="mmorpg icônes">Mmorpg icônes créées par Flat Icons - Flaticon</a></string>
     <string name="creditAPI">API fournie par MMOBomb</string>
     <string name="creditApplication">Application créée par Lucas Plé et Aurélien Plancke</string>
+    <string name="screenshot_of_the_game_content_description">screenshot of the game</string>
 </resources>

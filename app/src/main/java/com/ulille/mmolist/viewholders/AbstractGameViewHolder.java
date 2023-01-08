@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ulille.mmolist.R;
 
 public abstract class AbstractGameViewHolder extends RecyclerView.ViewHolder{
-    public TextView titleCard;
+    public final TextView titleCard;
     public TextView descriptionCard;
-    public ImageButton buttonAddFavorite;
-    public ImageView imageGame;
+    public final ImageButton buttonAddFavorite;
+    public final ImageView imageGame;
 
         public AbstractGameViewHolder(@NonNull View item) {
             super(item);

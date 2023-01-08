@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ulille.mmolist.R;
 
 public class ViewPagerHolder extends RecyclerView.ViewHolder {
-    public ImageView fullScreenImage;
+    public final ImageView fullScreenImage;
     public ViewPagerHolder(@NonNull View itemView) {
         super(itemView);
         fullScreenImage = itemView.findViewById(R.id.fullScreenImage);
