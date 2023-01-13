@@ -1,7 +1,9 @@
 package com.ulille.mmolist.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,8 +18,10 @@ import com.ulille.mmolist.R;
 import com.ulille.mmolist.api.model.Game;
 import com.ulille.mmolist.viewmodel.GameViewModel;
 
+import java.net.InetAddress;
 import java.util.List;
 import java.util.Objects;
+import java.util.Observable;
 import java.util.Random;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -53,6 +57,16 @@ public class MenuActivity extends AppCompatActivity {
         buttonFavorite.setOnClickListener(mOnClickFavorite);
         buttonRandom.setOnClickListener(mOnClickRandom);
         buttonCredit.setOnClickListener(mOnClickCredit);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        checkInternet();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkInternet();
     }
 
     private final View.OnClickListener mOnClickAllGame = view -> {
@@ -117,5 +131,26 @@ public class MenuActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Impossible de récupérer les jeux", Toast.LENGTH_LONG).show();
             }
         };
+    }
+
+    private void checkInternet() {
+        try{
+            InetAddress ipAddr = InetAddress.getByName("google.com");
+            if(ipAddr.equals("")){
+                Toast.makeText(MenuActivity.this, "You don't have access to internet", Toast.LENGTH_SHORT).show();
+                buttonAllGame.getBackground().setAlpha(64);
+                buttonAllGame.setClickable(false);
+                buttonAllGame.setActivated(false);
+            }else{
+                buttonAllGame.getBackground().setAlpha(255);
+                buttonAllGame.setActivated(true);
+                buttonAllGame.setClickable(true);
+            }
+        }catch(Exception e){
+            Toast.makeText(MenuActivity.this, "You don't have access to internet", Toast.LENGTH_SHORT).show();
+            buttonAllGame.getBackground().setAlpha(64);
+            buttonAllGame.setClickable(false);
+            buttonAllGame.setActivated(false);
+        }
     }
 }
