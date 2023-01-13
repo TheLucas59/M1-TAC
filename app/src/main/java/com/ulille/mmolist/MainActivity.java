@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ulille.mmolist.activities.MenuActivity;
 
+/**
+ * Entry of the application, it act as a homepage.
+ */
 public class MainActivity extends AppCompatActivity {
     final ActivityResultLauncher<Intent> secondActivityLauncher = createSecondActivityLauncher();
     Button buttonStart;

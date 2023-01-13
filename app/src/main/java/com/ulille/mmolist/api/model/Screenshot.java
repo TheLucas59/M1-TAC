@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.Generated;
 
+/**
+ * Represent the object Screenshot as sent by the API
+ */
 @Generated("jsonschema2pojo")
 public class Screenshot {
 

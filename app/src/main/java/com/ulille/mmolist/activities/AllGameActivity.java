@@ -33,6 +33,9 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import util.Constant;
 
+/**
+ * Class AllGameActivity: Activity that can be either FavoriteGame or AllGame
+ */
 public class AllGameActivity extends AppCompatActivity {
 
     SearchView searchView;
@@ -47,6 +50,9 @@ public class AllGameActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> detailsActivityLauncher;
     String activityName;
 
+    /**
+     * Listener for button grid, change the recyclerViewLayout, and the adapter to GameAdapterGrid
+     */
     public void setOnClickGrid(){
         this.adapterAllGame = new GameAdapterGrid(this, activityName);
         position = this.recyclerViewAllGames.getChildAdapterPosition(this.recyclerViewAllGames.getChildAt(0));
@@ -60,7 +66,9 @@ public class AllGameActivity extends AppCompatActivity {
         recyclerViewAllGames.setAdapter(this.adapterAllGame);
         changeButtonClickable(layout);
     }
-
+    /**
+     * Listener for button list, change the recyclerViewLayout, and the adapter to GameAdapterList
+     */
     public void setOnClickList(){
         this.adapterAllGame = new GameAdapterList(this, activityName);
         position = this.recyclerViewAllGames.getChildAdapterPosition(this.recyclerViewAllGames.getChildAt(0));
@@ -100,6 +108,7 @@ public class AllGameActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
 
         RecyclerView.LayoutManager layoutManager;
+        //Restore the previous layout
         if(layout != null && layout.equals(Constant.LAYOUT_GRID)){
             layoutManager = new GridLayoutManager(this, 2);
             changeButtonClickable(layout);
@@ -113,6 +122,7 @@ public class AllGameActivity extends AppCompatActivity {
         recyclerViewAllGames.setLayoutManager(layoutManager);
         viewModelGames = new ViewModelProvider(this).get(GameViewModel.class);
 
+        //Check if it's favorite page or AllGame page
         if(activityName.equals(Constant.EXTRAS_ALL_GAME)) {
             this.observableListGames = viewModelGames.getAllGamesAndFavoriteMerged();
             searchView.setVisibility(View.INVISIBLE);
@@ -145,6 +155,9 @@ public class AllGameActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Resubmit the search, and clear focus of searchView to avoid overlapping
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -152,20 +165,35 @@ public class AllGameActivity extends AppCompatActivity {
         searchView.clearFocus();
     }
 
+    /**
+     *
+     * @param games the list that will be fed to adapter
+     */
     private void subscribeAllGames(List<Game> games){
         this.adapterAllGame.setGames(games);
         recyclerViewAllGames.scrollToPosition(position);
         this.searchView.setQuery(this.searchView.getQuery(), true);
     }
 
+    /**
+     * Insert the given game in local database
+     * @param game the game to mark as favorite
+     */
     public void insertFavorite(Game game) {
         this.viewModelGames.insertFavorite(game);
     }
-
+    /**
+     * Delete the given game in local database
+     * @param game the game to unmark as favorite
+     */
     public void deleteFavorite(Game game) {
         this.viewModelGames.deleteFavorite(game);
     }
 
+    /**
+     * Save position, and layout style to restore them in the on create
+     * @param outState Bundle in which we save what we want
+     */
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         int position = this.recyclerViewAllGames.getChildAdapterPosition(this.recyclerViewAllGames.getChildAt(0));
@@ -174,6 +202,10 @@ public class AllGameActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+    /**
+     * Change transparency and clickable param of the previous layout, allowing to click only on other than current layout
+     * @param layout the string representing the current layout, either grid or list
+     */
     private void changeButtonClickable(String layout){
         final int TRANSPARENCY_VAL = 64;
         final int TRANSPARENCY_BASE = 255;
@@ -194,6 +226,11 @@ public class AllGameActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Open DetailsActivity for the given game
+     * @param game The game that we want details of
+     * @param position Position of the game in the list, so we can scroll back to it on return
+     */
     public void openDetailsActivity(Game game, int position) {
         Intent detailsActivityIntent = new Intent(this, GameDetailsActivity.class);
         detailsActivityIntent.putExtra(Constant.IDGAME, game.getId());
@@ -202,6 +239,9 @@ public class AllGameActivity extends AppCompatActivity {
         detailsActivityLauncher.launch(detailsActivityIntent);
     }
 
+    /**
+     * Listener for searchBox in favorite Activity
+     */
     final SearchView.OnQueryTextListener textListener = new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String search) {

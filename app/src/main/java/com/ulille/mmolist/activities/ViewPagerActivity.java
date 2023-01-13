@@ -12,12 +12,19 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.ulille.mmolist.R;
 import com.ulille.mmolist.adapters.ViewPagerAdapter;
 
+/**
+ * Activity to display screenshots of a game
+ */
 public class ViewPagerActivity extends AppCompatActivity {
 
     TabLayout tablayout;
     ViewPager2 viewPager;
     String[] urisImage;
 
+    /**
+     * Get uris of screenshots from Bundle, and feed them to the viewPager with ViewPagerAdapter
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

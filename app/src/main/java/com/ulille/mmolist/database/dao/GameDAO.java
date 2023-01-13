@@ -11,6 +11,9 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
 
+/**
+ * DAO with the given Query that will be sent to Room
+ */
 @Dao
 public interface GameDAO {
 

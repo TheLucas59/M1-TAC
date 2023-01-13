@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ulille.mmolist.R;
 
+/**
+ * Display credits of the application
+ */
 public class CreditActivity extends AppCompatActivity {
 
     @Override

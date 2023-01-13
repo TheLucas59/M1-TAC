@@ -12,6 +12,9 @@ import com.ulille.mmolist.database.dao.GameDAO;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Create a room database
+ */
 @Database(entities = {Game.class}, version = 1, exportSchema = false)
 public abstract class GameDatabase extends RoomDatabase {
 

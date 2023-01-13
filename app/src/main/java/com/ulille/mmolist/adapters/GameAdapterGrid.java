@@ -15,6 +15,12 @@ public class GameAdapterGrid extends AbstractGameAdapter<GameViewHolderGrid>{
         super(context, activityName);
     }
 
+    /**
+     * Set layout for gameAdapterGrid
+     * @param parent
+     * @param viewType
+     * @return The Gridholder
+     */
     @NonNull
     @Override
     public GameViewHolderGrid onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
