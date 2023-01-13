@@ -1,6 +1,5 @@
 package com.ulille.mmolist.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -21,8 +20,6 @@ import com.ulille.mmolist.viewmodel.GameViewModel;
 
 import java.net.InetAddress;
 import java.util.List;
-import java.util.Objects;
-import java.util.Observable;
 import java.util.Random;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
