@@ -281,6 +281,9 @@ public class AllGameActivity extends AppCompatActivity implements NeedInternet {
     };
 
     public boolean checkInternet() {
+        if(Constant.FAVORITE.equals(this.activityName)) {
+            return true;
+        }
         try {
             InetAddress ipAddr = InetAddress.getByName("google.com");
             if (ipAddr.equals("")) {
