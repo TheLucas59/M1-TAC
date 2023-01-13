@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.Generated;
 
+/**
+ * Represent the object MinimumSystemRequirements as sent by the API
+ */
 @Generated("jsonschema2pojo")
 public class MinimumSystemRequirements {
 
@@ -64,6 +67,10 @@ public class MinimumSystemRequirements {
         this.storage = storage;
     }
 
+    /**
+     * Check if attributes are not null, if they are they are not displayed
+     * @return the MinimumRequirement as a string
+     */
     @Override
     public String toString() {
         StringBuilder strb = new StringBuilder();

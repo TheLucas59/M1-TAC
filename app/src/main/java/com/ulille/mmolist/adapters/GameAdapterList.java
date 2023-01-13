@@ -15,6 +15,12 @@ public class GameAdapterList extends AbstractGameAdapter<GameViewHolderList> {
         super(context, activityName);
     }
 
+    /**
+     * Set layout for gameAdapterList
+     * @param parent
+     * @param viewType
+     * @return the viewHolderList
+     */
     @NonNull
     @Override
     public GameViewHolderList onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

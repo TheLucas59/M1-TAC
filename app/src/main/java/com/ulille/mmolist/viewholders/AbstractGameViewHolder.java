@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ulille.mmolist.R;
 
+/**
+ * AbstractGameViewHolder is a class to represent one item in the recyclerView, as List and Grid
+ * view have common behaviour, the common attribute are initialized here.
+ */
 public abstract class AbstractGameViewHolder extends RecyclerView.ViewHolder{
     public final TextView titleCard;
     public TextView descriptionCard;

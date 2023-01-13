@@ -27,6 +27,9 @@ import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import util.Constant;
 
+/**
+ * Allow to navigate between the differents activities, act as a menu
+ */
 public class MenuActivity extends AppCompatActivity {
     Button buttonAllGame;
     Button buttonFavorite;
@@ -89,6 +92,10 @@ public class MenuActivity extends AppCompatActivity {
         );
     }
 
+    /**
+     * Rand a number and try to get it from the API, repeat until it get one, it is used to feed RandomActivity
+     * @return A random game
+     */
     private DisposableSingleObserver<List<Game>> getListGameObserver() {
         return new DisposableSingleObserver<List<Game>>() {
             @Override

@@ -10,6 +10,9 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
 
+/**
+ * Class that will be called from JavaCode to interact with Room database by passing request through Room
+ */
 public class DatabaseRepository {
 
     private final GameDatabase db;

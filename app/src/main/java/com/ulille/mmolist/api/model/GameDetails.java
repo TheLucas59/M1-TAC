@@ -8,7 +8,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import javax.annotation.Generated;
-
+/**
+ * Represent the object gameDetails as sent by the API
+ */
 @Generated("jsonschema2pojo")
 public class GameDetails {
 
@@ -183,6 +185,11 @@ public class GameDetails {
         this.screenshots = screenshots;
     }
 
+    /**
+     * Create a new game with the given GameDetails
+     * @param gameDetails The gameDetailsWanted
+     * @return A Game
+     */
     public static Game getGameFromGameDetails(GameDetails gameDetails) {
         Game g = new Game();
         if(gameDetails != null) {

@@ -10,6 +10,9 @@ import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.Generated;
 
+/**
+ * Represent the object game as sent by the API
+ */
 @Generated("jsonschema2pojo")
 @Entity
 public class Game {

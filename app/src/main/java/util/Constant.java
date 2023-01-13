@@ -1,5 +1,8 @@
 package util;
 
+/**
+ * Constant that are used in more than one class, it contains key for bundle for example.
+ */
 public class Constant {
     public static final String EXTRA_ACTIVITY_NAME = "activityName";
     public static final String EXTRAS_ALL_GAME = "allGame";

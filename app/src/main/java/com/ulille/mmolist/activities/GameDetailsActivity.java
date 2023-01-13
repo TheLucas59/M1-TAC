@@ -46,6 +46,11 @@ public class GameDetailsActivity extends AppCompatActivity {
     int idGame = -1;
     int position = 0;
 
+    /**
+     * Retrieve information from savedInstanceState about the game, and retrieve component in the view.
+     * Set button as favorite if it's one
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +100,10 @@ public class GameDetailsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Feed the view with details when they are available
+     * @return
+     */
     private DisposableSingleObserver<GameDetails> getGameDetailObserver() {
         return new DisposableSingleObserver<GameDetails>() {
 

@@ -15,10 +15,18 @@ import com.ulille.mmolist.viewholders.ViewPagerHolder;
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerHolder> {
     final Context context;
     final String[] uris;
+
     public ViewPagerAdapter(Context context, String[] uris){
         this.context = context;
         this.uris = uris;
     }
+
+    /**
+     * Set the layout for viewPagerHolder
+     * @param parent
+     * @param viewType
+     * @return the viewPagerHolder
+     */
     @NonNull
     @Override
     public ViewPagerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -27,6 +35,11 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerHolder> {
         return new ViewPagerHolder(view);
     }
 
+    /**
+     * Bind element with the screenshot provided
+     * @param holder
+     * @param position Position in the list
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewPagerHolder holder, int position) {
 
@@ -36,6 +49,10 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerHolder> {
                 .into(holder.fullScreenImage);
     }
 
+    /**
+     * Get number of element
+     * @return The number of element in the data list, here number of screenshots
+     */
     @Override
     public int getItemCount() {
         return uris.length;

@@ -19,6 +19,10 @@ import java.util.List;
 
 import util.Constant;
 
+/**
+ * Abstract Game Adapter that allow to concentrate common behaviour between Grid and List adapters
+ * @param <VH>
+ */
 public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> extends RecyclerView.Adapter<VH> {
     final List<Game> originalList;
     List<Game> games;
@@ -37,6 +41,14 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
     @Override
     abstract public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
 
+    /**
+     * Bind the Game from the data list with his position in the recycler view
+     * Set the listener for the favorite button
+     * Update favorite button to set it at favorite or not
+     * Set data in views
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
         holder.itemView.setOnClickListener(view -> ((AllGameActivity) context).openDetailsActivity(games.get(position), position));
@@ -88,10 +100,19 @@ public abstract class AbstractGameAdapter<VH extends AbstractGameViewHolder> ext
         return this.originalList;
     }
 
+    /**
+     * Change the content of the recyclerview with the given games, so it can be filtered
+     * @param games
+     */
     public void filterList(List<Game> games){
         this.games = games;
         notifyDataSetChanged();
     }
+
+    /**
+     *
+     * @return the number of element in data list
+     */
     @Override
     public int getItemCount() {
         return this.games.size();
