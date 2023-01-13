@@ -156,5 +156,4 @@ public class Game {
         game.setFavorite(true);
         return game;
     }
-
 }

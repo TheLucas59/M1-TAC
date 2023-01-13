@@ -12,6 +12,7 @@ public class Constant {
     public static final String LAYOUT_KEY = "layoutKey";
     public static final String POSITION_KEY = "positionKey";
     public static final String IDGAME = "idGame";
+    public static final String GAME = "game";
     public static final String FAVORITE = "favorite";
     public static final String POSITION = "position";
     public static final String URISIMAGE = "urisImage";

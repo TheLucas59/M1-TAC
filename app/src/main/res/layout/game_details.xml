@@ -224,7 +224,7 @@
     <TextView
         android:id="@+id/countScreenshot"
         android:layout_width="123dp"
-        android:layout_height="33dp"
+        android:layout_height="56dp"
         android:background="#00000000"
         android:text="@string/countScreenshot"
         android:textAlignment="center"
@@ -232,6 +232,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/gameScreenshot1"
         app:layout_constraintEnd_toEndOf="@+id/gameScreenshot1"
         app:layout_constraintStart_toStartOf="@+id/gameScreenshot1"
-        app:layout_constraintTop_toTopOf="@+id/gameScreenshot1" />
+        app:layout_constraintTop_toTopOf="@+id/gameScreenshot1"
+        app:layout_constraintVertical_bias="0.607" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
