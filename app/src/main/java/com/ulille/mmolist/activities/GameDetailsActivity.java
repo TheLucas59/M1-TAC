@@ -16,7 +16,9 @@ import androidx.core.text.HtmlCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.ulille.mmolist.R;
+import com.ulille.mmolist.api.model.Game;
 import com.ulille.mmolist.api.model.GameDetails;
 import com.ulille.mmolist.api.model.Screenshot;
 import com.ulille.mmolist.viewmodel.GameViewModel;
@@ -43,6 +45,7 @@ public class GameDetailsActivity extends AppCompatActivity {
     ImageButton gameScreenshot1;
     TextView tvCountScreenshot;
     Boolean favorite = false;
+    Game game;
     int idGame = -1;
     int position = 0;
 
@@ -57,9 +60,11 @@ public class GameDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.game_details);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            idGame = extras.getInt("idGame");
-            favorite = extras.getBoolean("favorite");
-            position = extras.getInt("position");
+            Gson gson = new Gson();
+            game = gson.fromJson(extras.getString(Constant.GAME), Game.class);
+            idGame = game.getId();
+            favorite = game.isFavorite();
+            position = extras.getInt(Constant.POSITION);
         } else {
             String errMess = "Unable to fetch this game";
             Toast.makeText(this, errMess, Toast.LENGTH_LONG).show();
@@ -82,6 +87,7 @@ public class GameDetailsActivity extends AppCompatActivity {
         tvCountScreenshot = findViewById(R.id.countScreenshot);
 
         gameScreenshot1 = findViewById(R.id.gameScreenshot1);
+
         viewModelGames.getGameDetails(idGame).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribeWith(getGameDetailObserver());
 
@@ -109,7 +115,15 @@ public class GameDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onError(@NonNull Throwable e) {
-                Log.d("ERR", e.getMessage());
+                Toast.makeText(GameDetailsActivity.this,
+                        "You are not connected to the internet.", Toast.LENGTH_LONG).show();
+
+                gameTitle.setText(game.getTitle());
+                tvDescriptionEdit.setText(HtmlCompat.fromHtml(game.getShortDescription(),HtmlCompat.FROM_HTML_MODE_LEGACY));
+                tvCategorieEdit.setText(game.getGenre());
+                tvPlatformEdit.setText(game.getPlatform());
+                tvPublisherEdit.setText(game.getPublisher());
+                tvDeveloperEdit.setText(game.getDeveloper());
             }
 
             @SuppressLint("SetTextI18n")

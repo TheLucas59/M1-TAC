@@ -35,7 +35,7 @@
     <string name="tvRequirement">Specs:</string>
     <string name="tvRequirementEdit">No specs available</string>
     <string name="tvDeveloper">Developpeurs:</string>
-    <string name="tvDeveloperEdit">No developeur info available</string>
+    <string name="tvDeveloperEdit">No developer info available</string>
     <string name="countScreenshot">No screenshot available</string>
     <string name="contentDescriptionPrimaryImage">Principal screenshot of the game</string>
 
